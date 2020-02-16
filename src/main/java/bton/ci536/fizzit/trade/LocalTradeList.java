@@ -13,13 +13,13 @@ import javax.inject.Named;
  * @author Max Cripps <43726912+mc1098@users.noreply.github.com>
  */
 @Named
-@SessionScoped
+@SessionScoped 
 public class LocalTradeList implements Serializable{
     
     private String barcode;
     private List<TradeItem> items;
     
-    
+     
     public LocalTradeList() {
         this.items = new ArrayList<>();
     }
