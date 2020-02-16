@@ -21,6 +21,10 @@ public class BarcodeValidator implements Validator, Serializable{
     @Inject
     private LocalTradeList localTradeList;
     
+    public void setLocalTradeList(LocalTradeList localTradeList) {
+        this.localTradeList = localTradeList;
+    }
+    
     @Override
     public void validate(
             FacesContext context, 
