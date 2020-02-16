@@ -1,9 +1,7 @@
 package bton.ci536.fizzit.validation;
 
 import bton.ci536.fizzit.trade.LocalTradeList;
-import bton.ci536.fizzit.trade.TradeItem;
 import java.io.Serializable;
-import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
