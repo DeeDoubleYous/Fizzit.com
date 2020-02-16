@@ -21,14 +21,15 @@
                              maxlength="13"
                              pt:title="Enter a barcode"
                              required="true"
-                             value="#{localTradeList.barcode}"
-                             validator="#{barcodeValidator.validate}">
+                             value="#{localTradeList.barcode}">
+                    <f:validator binding="#{barcodeValidator}"/>
+                    <f:validator binding="#{tradeLimitValidator}"/>
                 </h:inputText> 
                 <h:commandButton class="barcode-input-btn active" 
                                  value="Confirm"
                                  action="#{localTradeList.submit}">
                     <!--ajax for async update of table -->
-                    <f:ajax execute="form" resetValues="true" render=":trade-list errmsg" />
+                    <f:ajax execute="form" resetValues="true" render=":trade-list errmsg limit-err" />
                 </h:commandButton>
                 <h:message id="errmsg" class="error" for="bcode"/>
 
