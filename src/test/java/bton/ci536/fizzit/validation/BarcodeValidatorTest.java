@@ -1,20 +1,17 @@
 package bton.ci536.fizzit.validation;
 
-import bton.ci536.fizzit.trade.LocalTradeList;
 import java.util.stream.Stream;
 import javax.faces.validator.ValidatorException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.params.provider.Arguments;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  *
@@ -27,7 +24,6 @@ public class BarcodeValidatorTest {
     
     public BarcodeValidatorTest() {
         this.validator = new BarcodeValidator();
-        validator.setLocalTradeList(new LocalTradeList());
     }
     
     @BeforeAll
