@@ -18,6 +18,11 @@ public class LocalTradeList implements Serializable{
     
     private String barcode;
     private List<TradeItem> items;
+    
+    
+    public LocalTradeList() {
+        this.items = new ArrayList<>();
+    }
 
     /**
      * Method is called after creation of object 
