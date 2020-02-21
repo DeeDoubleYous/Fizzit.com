@@ -1,0 +1,125 @@
+/* 
+    Created on : 15 Feb 2020, 15:02:03
+    Author     : Max Cripps <43726912+mc1098@users.noreply.github.com>
+*/
+
+*{
+    box-sizing:border-box;
+    font-family: "hind", sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+.barcode-form{
+    color:#f1f1f1;
+    font-size: 15px;
+    font-weight:500;
+    text-transform:uppercase;
+}
+
+.barcode-input{
+    background:#2b2b2b;
+    border:none;
+    color:#f4f4f4;
+    font-size:16px;
+    height: 50px;
+    outline:none;
+    padding: 0 15px;
+    text-transform: uppercase;
+    text-align:center;
+    width: 100%;
+}
+
+.barcode-input:focus{
+    background: #484848 !important;
+}
+
+.barcode-input-btn{
+    background:#037bee;
+    border:none;
+    color:#fff;
+    cursor:pointer;
+    font-weight:700;
+    height:50px;
+    margin-top:30px;
+    outline:none;
+    text-transform:uppercase;
+    transition: 1s linear;
+    width:100%;
+}
+
+.barcode-input-btn.active:hover{
+    opacity: .7;
+}
+
+body{
+    align-items:center;
+    background:#121212;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    min-height: 100vh;
+}
+
+.error{
+    color:red;
+    display: block;
+    padding: 20px;
+    text-transform:none;
+}
+
+h1{
+    color: #fff;
+    padding: 20px;
+}
+
+.trade-container{
+    background: #202020;
+    padding: 30px 60px;
+    width:470px;
+}
+
+.trade-table{
+    background:#202020;
+    color: #ddd;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.trade-table tbody{
+    display: block;
+    max-height: 200px;
+    overflow-y:auto;
+}
+
+.trade-table tbody td {
+    width: 500px;
+}
+
+.trade-table td{
+    border-bottom: 0.5px solid #404040;
+    padding: 10px;
+}
+
+.trade-table th {
+    height: 50px;
+}
+
+.trade-table thead {
+    display: block;
+}
+
+.trade-table thead th {
+    width: 500px;
+}
+
+
+::-webkit-scrollbar {
+    width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+    background: #333;
+}
+
