@@ -11,14 +11,14 @@ import java.io.Serializable;
  */
 public class TradeItem implements Serializable{
 
-    private String barcode;
+	private static final long serialVersionUID = 1L;
+	private String barcode;
     private String name;
     
     public TradeItem() {};
-    public TradeItem(String barcode) {
+    public TradeItem(String barcode,String name) {
         this.barcode = barcode;
-        //prototype only 
-        this.name = "dummy item";
+        this.name = name;
         
     }
     

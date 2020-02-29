@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
-
+import bton.ci536.fizzit.database.Product;
+import bton.ci536.fizzit.database.LookUp;
 /**
- * A Local list of to-be-traded items ({@link TradeItem}) by the customer. 
+ * A Local list of to-be-traded items ({@link Products}) by the customer. 
  * @see TradeItem
  * @author Max Cripps <43726912+mc1098@users.noreply.github.com>
  */
@@ -17,9 +20,8 @@ import javax.inject.Named;
 public class LocalTradeList implements Serializable{
     
     private String barcode;
-    private List<TradeItem> items;
+    private List<Product> items;
     
-     
     public LocalTradeList() {
         this.items = new ArrayList<>();
     }
@@ -41,13 +43,13 @@ public class LocalTradeList implements Serializable{
         this.barcode = barcode;
     }
     
-    public List<TradeItem> getItems() {
+    public List<Product> getItems() {
         return items;
     }
     
     /**
      * Submit will check the current barcode variable in this instance 
-     * and will generate a new {@link TradeItem} in the list if this 
+     * and will generate a new {@link Product} in the list if this 
      * barcode is accepted.
      * 
      * NB: currently it just simply creates a new item from the current barcode.
@@ -57,9 +59,8 @@ public class LocalTradeList implements Serializable{
             create a new TradeItem from barcode
             NB: in future this should seek item from 
             database. 
-        */ 
-        TradeItem item = new TradeItem(barcode);
-        this.items.add(item);
-        
+        */
+    	Product newItem = new Product().query(barcode);
+    	this.items.add(newItem);
     }
 }
