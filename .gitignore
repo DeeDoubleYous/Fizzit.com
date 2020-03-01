@@ -2,3 +2,7 @@
 /nb-configuration.xml
 /nbproject/
 /target/
+
+.classpath
+.project
+bin
