@@ -8,8 +8,12 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
 import bton.ci536.fizzit.database.Product;
-import bton.ci536.fizzit.database.LookUp;
 /**
  * A Local list of to-be-traded items ({@link Products}) by the customer. 
  * @see TradeItem
@@ -19,6 +23,9 @@ import bton.ci536.fizzit.database.LookUp;
 @SessionScoped 
 public class LocalTradeList implements Serializable{
     
+	@PersistenceContext(name = "fizzitLookUp")
+	EntityManager em;
+	
     private String barcode;
     private List<Product> items;
     
@@ -60,7 +67,7 @@ public class LocalTradeList implements Serializable{
             NB: in future this should seek item from 
             database. 
         */
-    	Product newItem = new Product().query(barcode);
-    	this.items.add(newItem);
+    	
+
     }
 }
