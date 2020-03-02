@@ -9,16 +9,14 @@ import javax.persistence.*;
  * @author Alex Wishart
  */
 @Named
+@Entity()
+@Table(name = "Product")
 public class Product implements Serializable{
-	/**
-	 * 
-	 */
-	@PersistenceContext(unitName="fizzitLookUp")
-	private EntityManager em;
+    
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "barcode")
+	@Column(name = "Barcode")
 	private String barcode;
 	@Column(name = "productPrice")
 	private double price;
