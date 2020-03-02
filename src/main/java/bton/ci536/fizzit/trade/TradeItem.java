@@ -11,8 +11,8 @@ import java.io.Serializable;
  */
 public class TradeItem implements Serializable{
 
-	private static final long serialVersionUID = 1L;
-	private String barcode;
+    private static final long serialVersionUID = 1L;
+    private String barcode;
     private String name;
     
     public TradeItem() {};
