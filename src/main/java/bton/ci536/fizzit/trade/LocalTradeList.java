@@ -5,15 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
 import bton.ci536.fizzit.database.Product;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 /**
  * A Local list of to-be-traded items ({@link Products}) by the customer. 
  * @see TradeItem
@@ -23,8 +21,8 @@ import bton.ci536.fizzit.database.Product;
 @SessionScoped 
 public class LocalTradeList implements Serializable{
     
-	@PersistenceContext(name = "fizzitLookUp")
-	EntityManager em;
+    @PersistenceContext(unitName = "twoo")
+    EntityManager em;
 	
     private String barcode;
     private List<Product> items;
@@ -55,19 +53,29 @@ public class LocalTradeList implements Serializable{
     }
     
     /**
-     * Submit will check the current barcode variable in this instance 
-     * and will generate a new {@link Product} in the list if this 
-     * barcode is accepted.
+     * Submit will check the current barcode field in this instance 
+     * is within the TWOO database. 
+     * if the product is in the TWOO database then the {@link Product} variable 
+     * is added to the items list. When the product is not in the TWOO database 
+     * this method will raise a {@link FaceMessage} to the "form:trade-btn" 
+     * component.
      * 
-     * NB: currently it just simply creates a new item from the current barcode.
+     * @see Product
+     * @see FacesContext
+     * @see FacesMessage
      */
     public void submit() {
-        /*
-            create a new TradeItem from barcode
-            NB: in future this should seek item from 
-            database. 
-        */
-    	
-
+        
+        // Does barcode match a product from TWOO? 
+        Product p = em.find(Product.class, barcode);
+        
+        if(p == null) { // No match found - add error message
+            FacesContext.getCurrentInstance()
+                    .addMessage("form:trade-btn",
+                        new FacesMessage("Sorry, we have no offer for this product."));
+        } else { // Product found so load into the items list.
+            items.add(p);
+        }
+        
     }
 }
