@@ -26,6 +26,7 @@ public class LocalTradeList implements Serializable{
 	
     private String barcode;
     private List<Product> items;
+    private double price = 0;
     
     public LocalTradeList() {
         this.items = new ArrayList<>();
@@ -52,6 +53,10 @@ public class LocalTradeList implements Serializable{
         return items;
     }
     
+    public String getPrice() {
+    	return "Total Price: £" + price + "0";
+    }
+    
     /**
      * Submit will check the current barcode field in this instance 
      * is within the TWOO database. 
@@ -75,6 +80,7 @@ public class LocalTradeList implements Serializable{
                         new FacesMessage("Sorry, we have no offer for this product."));
         } else { // Product found so load into the items list.
             items.add(p);
+            price += p.getPrice();
         }
         
     }
