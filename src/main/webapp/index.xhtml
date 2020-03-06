@@ -30,7 +30,7 @@
                                  value="Confirm"
                                  action="#{localTradeList.submit}">
                     <!--ajax for async update of table -->
-                    <f:ajax execute="@form" resetValues="true" render="@form" />
+                    <f:ajax execute="@form" resetValues="true" render="@form trade-list" />
                 </h:commandButton>
                 <h:message id="trade-err" class="error" for="trade-btn"/>
                 <h:message id="errmsg" class="error" for="bcode"/>
