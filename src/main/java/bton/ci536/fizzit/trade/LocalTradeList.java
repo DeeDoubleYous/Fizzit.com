@@ -26,7 +26,7 @@ public class LocalTradeList implements Serializable{
 	
     private String barcode;
     private List<Product> items;
-    private double price = 0;
+    private double totalValue = 0;
     
     public LocalTradeList() {
         this.items = new ArrayList<>();
@@ -52,9 +52,13 @@ public class LocalTradeList implements Serializable{
     public List<Product> getItems() {
         return items;
     }
+
+    public void setTotalValue(double totalValue) {
+        this.totalValue = totalValue;
+    }
     
-    public String getPrice() {
-    	return "Total Price: £" + price + "0";
+    public String getTotalValue() {
+    	return String.format("Total Value: Â£%.2f", totalValue);
     }
     
     /**
@@ -80,7 +84,7 @@ public class LocalTradeList implements Serializable{
                         new FacesMessage("Sorry, we have no offer for this product."));
         } else { // Product found so load into the items list.
             items.add(p);
-            price += p.getPrice();
+            totalValue += p.getPrice();
         }
         
     }
