@@ -36,34 +36,31 @@
                 <h:message id="trade-err" class="error" for="trade-btn"/>
                 <h:message id="errmsg" class="error" for="bcode"/>
                 <h:outputText id ="totalPrice" value = "#{localTradeList.totalValue}"/>
-            <!-- dataTable instead of ui:repeat for clear and easy table -->
+				<!-- dataTable instead of ui:repeat for clear and easy table -->
             	<h:dataTable id="trade-list" 
-                         	value="#{localTradeList.items}" 
-                         	var="item"
-                         	styleClass="trade-table hidden"
-                         	style="display:#{localTradeList.items.isEmpty() ? 'none;' : 'block'}">
-               	 <h:column>
+                         value="#{localTradeList.items}" 
+                         var="item"
+                         styleClass="trade-table hidden"
+                         style="display:#{localTradeList.items.isEmpty() ? 'none;' : 'block'}">
+					<h:column>
                     	<f:facet name="header">Barcode</f:facet>
                     	#{item.barcode}
-                	</h:column>
+					</h:column>
                 	<h:column>
                     	<f:facet name="header">Item</f:facet>
                     	#{item.name}
                 	</h:column>
                 	<h:column>
-                		<h:commandButton
+                		<h:commandLink
                 			id="deleteItem"
-                			value="delete"
-                			icon = "fa-trash-alt"
-                			action="#{localTradeList.deleteItem(item)}"
-                			>
-                			<f:ajax execute="@form" resetValues="true" render="@form trade-list" />
-                    	</h:commandButton>
+                			action="#{localTradeList.deleteItem(item)}">
+                			<f:ajax execute="@form" resetValues="true" render="@form trade-list"/>
+							<i class="far fa-trash-alt"></i>
+                    	</h:commandLink>
                 	</h:column>
             	</h:dataTable>
             </h:form>
-        </h:panelGroup>   
-        
+        </h:panelGroup> 
     </h:body>
 </html>
 
