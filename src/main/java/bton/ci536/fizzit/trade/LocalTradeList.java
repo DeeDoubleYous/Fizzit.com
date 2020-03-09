@@ -88,4 +88,16 @@ public class LocalTradeList implements Serializable{
         }
         
     }
+    
+    
+    /**
+     * Will take a product item and removes it from the items arrayList. The only time this can be called
+     * is from an item that is already in the list. Will also subtract the cost of the item from the totalValue
+     * @param p
+     */
+    
+    public void deleteItem(Product p) {
+    	items.remove(p);
+    	totalValue -= p.getPrice();
+    }
 }

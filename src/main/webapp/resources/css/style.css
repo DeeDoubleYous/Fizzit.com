@@ -10,6 +10,10 @@
     padding: 0px;
 }
 
+a , a:visited > i{
+	color: white;
+}
+
 .barcode-form{
     color:#f1f1f1;
     font-size: 15px;
@@ -122,4 +126,7 @@ h1{
 ::-webkit-scrollbar-thumb{
     background: #333;
 }
+
+
+
 
