@@ -54,9 +54,10 @@
                 <h:column>
                 	<h:form>
                 		<h:commandButton
-                			id="deleteItem"
+                			class="deleteItem"
+                			value="delete"
+                			icon="far fa-trash-alt"
                 			action="#{localTradeList.deleteItem(item)}">
-                    		<i class="far fa-trash-alt"></i>
                     	</h:commandButton>
                     </h:form>
                 </h:column>
