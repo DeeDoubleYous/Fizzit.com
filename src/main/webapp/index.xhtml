@@ -52,7 +52,13 @@
                     #{item.name}
                 </h:column>
                 <h:column>
-                    <i class="far fa-trash-alt"></i>
+                	<h:form>
+                		<h:commandButton
+                			id="deleteItem"
+                			action="#{localTradeList.deleteItem(item)}">
+                    		<i class="far fa-trash-alt"></i>
+                    	</h:commandButton>
+                    </h:form>
                 </h:column>
             </h:dataTable>
         </h:panelGroup>   
