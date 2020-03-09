@@ -10,6 +10,10 @@
     padding: 0px;
 }
 
+a , a:visited > i{
+	color: white;
+}
+
 .barcode-form{
     color:#f1f1f1;
     font-size: 15px;
@@ -123,11 +127,6 @@ h1{
     background: #333;
 }
 
-a:link{
-	color: white;
-}
 
-a:visited{
-	color: white;
-}
+
 
