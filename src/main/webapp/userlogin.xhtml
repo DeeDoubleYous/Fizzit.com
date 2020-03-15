@@ -13,17 +13,19 @@
 		
 		<h:panelGroup class="user-login" layout="block">
 			<h:form class="user-login-input">
-				<h:inputText id = "email"
+				<table>
+					<tr><h:inputText id = "email"
 							 pt:placeholder ="Enter your email"
 							 class="email-input"
 							 pt:title="Enter your email"
 							 required="true"
-							 value="#{LoginControl.email}"/>
-				<h:inputText id = "password"
+							 value="#{LoginControl.email}"/></tr>
+					<tr><h:inputText id = "password"
 							 class="password-input"
 							 pt:title="Password"
 							 required="true"
-							 value="#{LoginControl.password}"/>
+							 value="#{LoginControl.password}"/></tr>
+				</table>
 			</h:form>
 		</h:panelGroup>
 		
