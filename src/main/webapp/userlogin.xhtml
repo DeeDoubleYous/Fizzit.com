@@ -11,21 +11,26 @@
 	  <h:body>
 		<h1>Login to your account</h1>
 		
-		<h:panelGroup class="user-login" layout="block">
+		<h:panelGroup class="user-login">
 			<h:form class="user-login-input">
-				<table>
-					<tr><h:inputText id = "email"
-							 pt:placeholder ="Enter your email"
-							 class="email-input"
-							 pt:title="Enter your email"
-							 required="true"
-							 value="#{LoginControl.email}"/></tr>
-					<tr><h:inputText id = "password"
-							 class="password-input"
-							 pt:title="Password"
-							 required="true"
-							 value="#{LoginControl.password}"/></tr>
-				</table>
+				<h:inputText id = "email"
+						pt:placeholder ="Enter your email"
+						class="email-input"
+						pt:title="Enter your email"
+						required="true"
+						value="#{LoginControl.email}"/>
+				<h:inputText id = "password"
+						class="password-input"
+						pt:title="Password"
+						required="true"
+						value="#{LoginControl.password}"/>
+				<h:commandButton id="login-butt"
+                                 class="login-confirm-button active" 
+                                 value="Confirm"
+                                 action="#{LoginControl.submit}">
+                    <!--ajax for async update of table -->
+                    <f:ajax execute="@form" resetValues="true"/>
+                </h:commandButton>
 			</h:form>
 		</h:panelGroup>
 		
