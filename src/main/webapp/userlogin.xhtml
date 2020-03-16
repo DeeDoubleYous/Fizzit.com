@@ -11,8 +11,8 @@
 	  <h:body>
 		<h1>Login to your account</h1>
 		
-		<h:panelGroup class="user-login">
-			<h:form class="user-login-input">
+		<h:panelGroup class="user-login" layout="block">
+			<h:form class="user-login">
 				<h:inputText id = "email"
 						pt:placeholder ="Enter your email"
 						class="email-input"
@@ -25,12 +25,13 @@
 						required="true"
 						value="#{LoginControl.password}"/>
 				<h:commandButton id="login-butt"
-                                 class="login-confirm-button active" 
-                                 value="Confirm"
-                                 action="#{LoginControl.submit}">
+                        class="login-confirm-button active"
+					    value ="login"
+                        action="#{LoginControl.submit}">
                     <!--ajax for async update of table -->
                     <f:ajax execute="@form" resetValues="true"/>
                 </h:commandButton>
+				<h:message id="login-error" class="error" for="user-login"/>
 			</h:form>
 		</h:panelGroup>
 		
