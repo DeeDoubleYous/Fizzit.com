@@ -16,8 +16,11 @@ a , a:visited > i{
 
 .barcode-form{
     color:#f1f1f1;
+    display: flex;
+    flex-direction: column;
     font-size: 15px;
     font-weight:500;
+    justify-content: center;
     text-transform:uppercase;
 }
 
@@ -30,8 +33,6 @@ a , a:visited > i{
     outline:none;
     padding: 0 15px;
     text-transform: uppercase;
-    text-align:center;
-    width: 100%;
 }
 
 .barcode-input:focus{
@@ -43,26 +44,43 @@ a , a:visited > i{
     border:none;
     color:#fff;
     cursor:pointer;
-    font-weight:700;
     height:50px;
-    margin-top:30px;
     outline:none;
     text-transform:uppercase;
     transition: 1s linear;
-    width:100%;
 }
 
 .barcode-input-btn.active:hover{
     opacity: .7;
 }
 
+.barcode-widget{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.btn{
+    background: #037bee;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 700;
+    height: 50px;
+    outline: none;
+    padding: 10px;
+    text-transform: uppercase;
+    transition: color 1s linear;
+}
+
+.btn:hover{
+    opacity: .7;
+}
+
 body{
     align-items:center;
     background:#121212;
-    display: flex;
-    flex-direction: column;
-    justify-content:center;
-    min-height: 100vh;
 }
 
 .error{
@@ -77,23 +95,73 @@ h1{
     padding: 20px;
 }
 
-.trade-container{
+.header{
     background: #202020;
+    width: 100vw;
+    height: 10vh;
+}
+
+.header .logo{
+    cursor: context-menu;
+    float: left;
+    margin-left: 20px;
+    line-height: 10vh;
+    padding: 0;
+}
+
+.header .menu{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    float: right;
+    line-height: 10vh;
+    margin-right: 20px;
+}
+
+.header .menu .menu-item{
+    margin: 0px 5px 0 5px;
+}
+
+.hidden{
+    display: none;
+}
+
+main{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 90vh;
+}
+
+.trade-container{
+    align-items: center;
+    background: #202020;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 30px 60px;
     width:470px;
+}
+
+.trade-container p, .trade-total{
+    margin: 20px;
+    text-align: center;
 }
 
 .trade-table{
     background:#202020;
     color: #ddd;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
+    text-transform: none;
     width: 100%;
 }
 
 .trade-table tbody{
     display: block;
-    max-height: 200px;
+    height: 200px;
     overflow-y:auto;
 }
 
@@ -118,6 +186,18 @@ h1{
     width: 500px;
 }
 
+.user-sec{
+    color: #fff;
+}
+
+.user-sec i{
+    background: grey;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    margin: 0px 10px 0px px;
+    padding: 10px;
+}
 
 ::-webkit-scrollbar {
     width:10px;

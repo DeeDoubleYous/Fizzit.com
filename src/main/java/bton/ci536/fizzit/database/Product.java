@@ -58,5 +58,7 @@ public class Product implements Serializable{
 		this.type = type;
 	}
 	
-	
+	public String getFormattedPrice() {
+            return String.format("£%.2f", price);
+        }
 }
