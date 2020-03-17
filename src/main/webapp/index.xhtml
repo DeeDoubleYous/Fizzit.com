@@ -2,65 +2,89 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    
     <h:head>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"/>
         <h:outputStylesheet name="css/style.css" />
-        <title>Fizzit</title>
+        <title>Trading Media | Fizzit.com</title>
     </h:head>
     <h:body>
         
-        <h1>Fizzit</h1>
-        
-        <h:panelGroup class="trade-container" layout="block">
+        <header class="header">
+            <h1 class="logo">Fizzit.com</h1>
+            <nav class="menu">
+                <div class="user-sec menu-item">
+                    <i class="far fa-user"></i>
+                </div>
+                <button class="sign-in btn menu-item">Sign in</button>
+                <button class="sign-up btn menu-item">Sign up</button>
+            </nav>
             
-            <h:form class="barcode-form" id="form">
-                <h:inputText id="bcode"
-                             pt:placeholder="Enter a barcode"
-                             class="barcode-input"
-                             maxlength="13"
-                             pt:title="Enter a barcode"
-                             required="true"
-                             value="#{localTradeList.barcode}">
-                    <f:validator binding="#{barcodeValidator}"/>
-                    <f:validator binding="#{tradeLimitValidator}"/>
-                </h:inputText> 
-                <h:commandButton id="trade-btn"
-                                 class="barcode-input-btn active" 
-                                 value="Confirm"
-                                 action="#{localTradeList.submit}">
-                    <!--ajax for async update of table -->
-                    <f:ajax execute="@form" resetValues="true" render="@form trade-list" />
-                </h:commandButton>
-                <h:message id="trade-err" class="error" for="trade-btn"/>
-                <h:message id="errmsg" class="error" for="bcode"/>
-                <h:outputText id ="totalPrice" value = "#{localTradeList.totalValue}"/>
-		<!-- dataTable instead of ui:repeat for clear and easy table -->
-            	<h:dataTable id="trade-list" 
-                         value="#{localTradeList.items}" 
-                         var="item"
-                         styleClass="trade-table hidden"
-                         style="display:#{localTradeList.items.isEmpty() ? 'none;' : 'block'}">
-                    <h:column>
-                    	<f:facet name="header">Barcode</f:facet>
-                    	#{item.barcode}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Item</f:facet>
-                    	#{item.name}
-                    </h:column>
-                    <h:column>
-                	<h:commandLink
-                		id="deleteItem"
-                		action="#{localTradeList.deleteItem(item)}">
-                            <f:ajax execute="@form" resetValues="true" render="@form trade-list"/>
-                            <i class="far fa-trash-alt"></i>
-                    	</h:commandLink>
-                    </h:column>
-            	</h:dataTable>
-            </h:form>
-        </h:panelGroup> 
+        </header>
+        
+        <main>
+            <h:panelGroup class="trade-container" layout="block">
+                <p>
+                    Start selling us your DVDs and CDs enter the barcode and click 'Add'!
+                </p>
+                <h:form class="barcode-form" id="form">
+                    <h:panelGroup class="barcode-widget">
+                        <h:inputText id="bcode"
+                                     pt:placeholder="Enter a barcode"
+                                     class="barcode-input"
+                                     maxlength="13"
+                                     pt:title="Enter a barcode"
+                                     required="true"
+                                     value="#{localTradeList.barcode}">
+                            <f:validator binding="#{barcodeValidator}"/>
+                            <f:validator binding="#{tradeLimitValidator}"/>
+                        </h:inputText> 
+                        <h:commandButton id="trade-btn"
+                                         class="barcode-input-btn btn active" 
+                                         value="Add"
+                                         action="#{localTradeList.submit}">
+                            <!--ajax for async update of table -->
+                            <f:ajax execute="@form" resetValues="true" render="@form trade-list" />
+                        </h:commandButton>
+                    </h:panelGroup>
+                    <h:message id="trade-err" class="error" for="trade-btn"/>
+                    <h:message id="errmsg" class="error" for="bcode"/>
+                    <h:outputText id ="totalPrice" class="trade-total" value = "#{localTradeList.totalValue}"/>
+                    <h:commandButton class="trade-btn btn" value="Confirm Trade"></h:commandButton>
+                    <!-- dataTable instead of ui:repeat for clear and easy table -->
+                    <h:dataTable id="trade-list" 
+                             value="#{localTradeList.items}" 
+                             var="item"
+                             styleClass="trade-table hidden"
+                             style="display:#{localTradeList.items.isEmpty() ? 'none;' : 'block'}">
+                        <h:column>
+                            <f:facet name="header">Barcode</f:facet>
+                            #{item.barcode}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Item</f:facet>
+                            #{item.name}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Price</f:facet>
+                            #{item.formattedPrice}
+                        </h:column>
+                        <h:column>
+                            <h:commandLink
+                                    id="deleteItem"
+                                    action="#{localTradeList.deleteItem(item)}">
+                                <f:ajax execute="@form" resetValues="true" render="@form trade-list"/>
+                                <i class="far fa-trash-alt"></i>
+                            </h:commandLink>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </h:panelGroup> 
+        </main>
     </h:body>
 </html>
 
