@@ -13,6 +13,8 @@ public class Customer implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@Column(name = "customerId")
+	private String customerId;
 	@Column(name = "email")
 	private String email;
 	@Column(name = "password")
@@ -40,5 +42,13 @@ public class Customer implements Serializable {
 		}else {
 			return false;
 		}
+	}
+	
+	public String getId() {
+		return customerId;
+	}
+	
+	public void setId(String id) {
+		this.customerId = id;
 	}
 }
