@@ -7,12 +7,17 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import bton.ci536.fizzit.database.Customer;
+
 
 @Named("LoginControl")
 @SessionScoped
 public class LoginControl implements Serializable{
+	
+	
 	
 	@PersistenceContext(name="twoo")
 	EntityManager em;
@@ -20,6 +25,8 @@ public class LoginControl implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String email;
 	private String password;
+	
+	private String message;
 	
 	public String getEmail() {
 		return email;
@@ -38,18 +45,21 @@ public class LoginControl implements Serializable{
 	}
 	
 	public void submit() {
-		Customer c = em.find(Customer.class, email);
-		if(c == null) {
-			c = null;
-			email = null;
-			password = null;
-			FacesContext.getCurrentInstance().addMessage("form:user-login", new FacesMessage("Unfortunatly one of either you password or email was incorrect, please try again"));
-		}else if(!c.passwordMatch(password)){
-			c = null;
-			email = null;
-			password = null;
-			FacesContext.getCurrentInstance().addMessage("form:user-login", new FacesMessage("Unfortunatly one of either you password or email was incorrect, please try again"));
+		TypedQuery<Customer> q = em.createQuery("select c from Customer c where c.email = '" + email + "' and c.password = '" + password + "'", Customer.class);
+		try {
+			Customer c = q.getSingleResult();
+			message = c.getFname();
+		}catch(Exception c) {
+			message = "either you email or password was incorrect";
 		}
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 }

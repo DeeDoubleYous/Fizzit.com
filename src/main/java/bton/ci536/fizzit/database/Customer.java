@@ -13,7 +13,7 @@ public class Customer implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "customerId")
+	@Column(name = "customerid")
 	private String customerId;
 	@Column(name = "email")
 	private String email;

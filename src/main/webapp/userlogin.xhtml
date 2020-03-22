@@ -12,7 +12,7 @@
 		<h1>Login to your account</h1>
 		
 		<h:panelGroup class="user-login" layout="block">
-			<h:form class="user-login">
+			<h:form class="user-login" id = "form">
 				<h:inputText id = "email"
 						pt:placeholder ="Enter your email"
 						class="email-input"
@@ -29,9 +29,9 @@
 					    value ="login"
                         action="#{LoginControl.submit}">
                     <!--ajax for async update of table -->
-                    <f:ajax execute="@form" resetValues="true"/>
-                </h:commandButton>
-				<h:message id="login-error" class="error" for="user-login"/>
+					<h:outputText value="#{LoginControl.message}"/>
+                    <f:ajax execute="@form" resetValues="true" render="@form"/>
+                </h:commandButton>				
 			</h:form>
 		</h:panelGroup>
 		
