@@ -141,8 +141,4 @@ public class LocalTradeList implements Serializable{
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	
-	public String getCustomerId() {
-		return this.customer.getId();
-	}
 }
