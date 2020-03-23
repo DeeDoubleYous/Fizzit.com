@@ -3,8 +3,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp">
     
     <h:head>
         <meta charset="utf-8" />
@@ -14,17 +14,7 @@
     </h:head>
     <h:body>
         
-        <header class="header">
-            <h1 class="logo">Fizzit.com</h1>
-            <nav class="menu">
-                <div class="user-sec menu-item">
-                    <i class="far fa-user"></i>
-                </div>
-                <button class="sign-in btn menu-item">Sign in</button>
-                <button class="sign-up btn menu-item">Sign up</button>
-            </nav>
-            
-        </header>
+        <comp:menu/>
         
         <main>
             <h:panelGroup class="trade-container" layout="block">
@@ -54,20 +44,26 @@
                     <h:message id="trade-err" class="error" for="trade-btn"/>
                     <h:message id="errmsg" class="error" for="bcode"/>
                     <h:outputText id ="totalPrice" class="trade-total" value = "#{localTradeList.totalValue}"/>
-                    <h:commandButton class="trade-btn btn" value="Confirm Trade"></h:commandButton>
+                    <h:commandButton class="trade-btn btn" 
+                                     value="Confirm Trade" 
+                                     action="#{trader.trade(customer, localTradeList)}">
+                    </h:commandButton>
                     <!-- dataTable instead of ui:repeat for clear and easy table -->
                     <h:dataTable id="trade-list" 
                              value="#{localTradeList.items}" 
                              var="item"
-                             styleClass="trade-table hidden"
-                             style="display:#{localTradeList.items.isEmpty() ? 'none;' : 'block'}">
+                             styleClass="trade-table #{localTradeList.items.isEmpty()? 'hidden':''}">
                         <h:column>
                             <f:facet name="header">Barcode</f:facet>
                             #{item.barcode}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Item</f:facet>
-                            #{item.name}
+                            #{item.itemName}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Quantity</f:facet>
+                            #{item.itemQuantity}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Price</f:facet>
