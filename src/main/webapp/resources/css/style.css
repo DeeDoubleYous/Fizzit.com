@@ -74,6 +74,16 @@ a , a:visited > i{
     transition: color 1s linear;
 }
 
+.btn:disabled{
+    color: #666;
+    background: #444;
+}
+
+.btn:disabled:hover{
+    cursor:context-menu;
+    opacity:1;
+}
+
 .btn:hover{
     opacity: .7;
 }
@@ -142,7 +152,7 @@ main{
     flex-direction: column;
     justify-content: center;
     padding: 30px 60px;
-    width:470px;
+    width:600px;
 }
 
 .trade-container p, .trade-total{
@@ -160,31 +170,22 @@ main{
 }
 
 .trade-table tbody{
-    display: block;
     height: 200px;
     overflow-y:auto;
-}
-
-.trade-table tbody td {
-    width: 500px;
 }
 
 .trade-table td{
     border-bottom: 0.5px solid #404040;
     padding: 10px;
+    width: 20%;
 }
 
 .trade-table th {
     height: 50px;
+    padding: 10px;
+    width: 20%;
 }
 
-.trade-table thead {
-    display: block;
-}
-
-.trade-table thead th {
-    width: 500px;
-}
 
 .user-sec{
     color: #fff;

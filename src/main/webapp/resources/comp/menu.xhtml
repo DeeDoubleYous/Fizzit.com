@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <cc:interface>
+        <cc:attribute name="hidden" default="false"/>
+    </cc:interface>
+    
+    <cc:implementation>
+        
+        <header class="header">
+            <h1 class="logo">Fizzit.com</h1>
+            <nav class="menu">
+            <c:if test="#{!cc.attrs.hidden}">
+                <c:if test="#{customer.customerId != null}">
+                    <div class="user-sec menu-item">
+                        #{customer.fname}
+                        <i class="far fa-user"></i>
+                    </div>
+                </c:if>
+                <c:if test="#{customer.customerId == null}">
+                    <button class="sign-in btn menu-item">Sign in</button>
+                    <button class="sign-up btn menu-item">Sign up</button>
+                </c:if>
+            </c:if>
+            </nav>
+        </header>
+    </cc:implementation>
+    
+    
+</html>

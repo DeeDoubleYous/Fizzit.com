@@ -1,8 +1,6 @@
 package bton.ci536.fizzit.trade;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -10,6 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import bton.ci536.fizzit.database.Product;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 /**
@@ -21,15 +22,16 @@ import javax.faces.context.FacesContext;
 @SessionScoped 
 public class LocalTradeList implements Serializable{
     
-    @PersistenceContext(unitName = "twoo")
+    @PersistenceContext(unitName = "fizzit")
     EntityManager em;
 	
     private String barcode;
-    private List<Product> items;
+    private Map<String,TradeItem> items;
     private double totalValue = 0;
+    private int totalItems = 0;
     
     public LocalTradeList() {
-        this.items = new ArrayList<>();
+        this.items = new HashMap<>();
     }
 
     /**
@@ -38,7 +40,7 @@ public class LocalTradeList implements Serializable{
      */
     @PostConstruct
     public void init() {
-        this.items = new ArrayList<>();
+        this.items = new HashMap<>();
     }
 
     public String getBarcode() {
@@ -49,8 +51,8 @@ public class LocalTradeList implements Serializable{
         this.barcode = barcode;
     }
     
-    public List<Product> getItems() {
-        return items;
+    public Collection<TradeItem> getItems() {
+        return items.values();
     }
 
     public void setTotalValue(double totalValue) {
@@ -60,6 +62,16 @@ public class LocalTradeList implements Serializable{
     public String getTotalValue() {
     	return String.format("Total Value: £%.2f", totalValue);
     }
+
+    public int getTotalItems() {
+        return totalItems;
+    }
+
+    public void setTotalItems(int totalItems) {
+        this.totalItems = totalItems;
+    }
+    
+    
     
     /**
      * Submit will check the current barcode field in this instance 
@@ -75,16 +87,25 @@ public class LocalTradeList implements Serializable{
      */
     public void submit() {
         
-        // Does barcode match a product from TWOO? 
-        Product p = em.find(Product.class, barcode);
-        
-        if(p == null) { // No match found - add error message
-            FacesContext.getCurrentInstance()
-                    .addMessage("form:trade-btn",
+        if(items.containsKey(barcode)){//save pinging db and increment quantity
+            items.get(barcode).incrementQuantity();
+            totalItems++;
+            totalValue += items.get(barcode).getItemAmount();
+        } else { //try and fetch item from twoo
+            
+            Product p = em.find(Product.class, barcode);
+            
+            if(p == null) { // No match found (unwanted item) - add error message
+                FacesContext.getCurrentInstance()
+                        .addMessage("form:trade-btn",
                         new FacesMessage("Sorry, we have no offer for this product."));
-        } else { // Product found so load into the items list.
-            items.add(p);
-            totalValue += p.getPrice();
+                
+            } else { // Product found so convert to trade item and add to list.
+                items.put(barcode, p.toTradeItem());
+                totalValue += p.getPrice();
+                totalItems++;
+            }
+            
         }
         
     }
@@ -93,11 +114,20 @@ public class LocalTradeList implements Serializable{
     /**
      * Will take a product item and removes it from the items arrayList. The only time this can be called
      * is from an item that is already in the list. Will also subtract the cost of the item from the totalValue
-     * @param p
+     * @param tradeItem
      */
     
-    public void deleteItem(Product p) {
-    	items.remove(p);
-    	totalValue -= p.getPrice();
+    public void deleteItem(TradeItem tradeItem) {
+        totalValue -= tradeItem.getItemAmount() * tradeItem.getItemQuantity();
+        totalItems -= tradeItem.getItemQuantity();
+        items.remove(tradeItem.getBarcode());
+    }
+    
+    
+    public void clear(){
+        barcode = "";
+        totalItems = 0;
+        totalValue = 0;
+        items.clear();
     }
 }
