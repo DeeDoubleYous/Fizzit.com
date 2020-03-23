@@ -19,8 +19,8 @@ public class Product implements Serializable{
 	@Id
 	@Column(name = "productBarcode")
 	private String barcode;
-        @Column(name = "productType")
-        private int type;
+    @Column(name = "productType")
+    private int type;
 	@Column(name = "productPrice")
 	private double price;
 	@Column(name = "productName")
