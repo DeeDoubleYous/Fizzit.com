@@ -9,6 +9,7 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import bton.ci536.fizzit.database.Customer;
 import bton.ci536.fizzit.database.Product;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -27,6 +28,8 @@ public class LocalTradeList implements Serializable{
     private String barcode;
     private List<Product> items;
     private double totalValue = 0;
+    
+    private Customer customer;
     
     public LocalTradeList() {
         this.items = new ArrayList<>();
@@ -100,4 +103,16 @@ public class LocalTradeList implements Serializable{
     	items.remove(p);
     	totalValue -= p.getPrice();
     }
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	
+	public String getCustomerId() {
+		return this.customer.getId();
+	}
 }

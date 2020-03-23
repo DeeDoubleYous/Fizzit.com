@@ -4,10 +4,10 @@
     <class>bton.ci536.fizzit.database.Product</class>
 	<class>bton.ci536.fizzit.database.Customer</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://178.128.37.54:3306/nm555_FizzitTwo"/>
-      <property name="javax.persistence.jdbc.user" value="nm555_AW"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://178.128.37.54:3306/mc1098_fizzit"/>
+      <property name="javax.persistence.jdbc.user" value="mc1098_fizzit"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="vxy[-m,Vd{kK"/>
+      <property name="javax.persistence.jdbc.password" value="fizzitftw2020"/>
     </properties>
   </persistence-unit>
 </persistence>

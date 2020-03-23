@@ -2,15 +2,14 @@ package bton.ci536.fizzit.userLogin;
 
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
+import javax.faces.annotation.ManagedProperty;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import bton.ci536.fizzit.database.Customer;
+import bton.ci536.fizzit.trade.LocalTradeList;
 
 
 @Named("LoginControl")
@@ -27,6 +26,11 @@ public class LoginControl implements Serializable{
 	private String password;
 	
 	private String message;
+	
+	private Customer customer;
+	
+	@ManagedProperty(value = "#{LocalTradeList}")
+	LocalTradeList tradeControl;
 	
 	public String getEmail() {
 		return email;
@@ -47,10 +51,10 @@ public class LoginControl implements Serializable{
 	public void submit() {
 		TypedQuery<Customer> q = em.createQuery("select c from Customer c where c.email = '" + email + "' and c.password = '" + password + "'", Customer.class);
 		try {
-			Customer c = q.getSingleResult();
-			message = c.getFname();
+			customer = q.getSingleResult();
+			message = customer.getFname();
 		}catch(Exception c) {
-			message = "either you email or password was incorrect";
+			message = "either your email or password was incorrect";
 		}
 	}
 

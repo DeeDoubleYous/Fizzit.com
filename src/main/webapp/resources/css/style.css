@@ -114,7 +114,6 @@ h1{
     width: 500px;
 }
 
-
 ::-webkit-scrollbar {
     width:10px;
 }
@@ -131,3 +130,6 @@ a:visited{
 	color: white;
 }
 
+.log-out{
+	color: white;
+}
