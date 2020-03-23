@@ -2,39 +2,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-      <h:head>
-		<meta charset="utf-8"/>
-		<h:outputStylesheet name="css/style.css"/>
-		<title>Fizzit</title>
-	  </h:head>
-	  <h:body>
-		<h1>Login to your account</h1>
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp">
+      
+    <h:head>
+	<meta charset="utf-8"/>
+	<h:outputStylesheet name="css/style.css"/>
+	<title>Login | Fizzit.com</title>
+    </h:head>
+    
+    <h:body>
+        
+        <comp:menu hidden="true"/>
+        
+        <h1>Login to your account</h1>
 		
-		<h:panelGroup class="user-login" layout="block">
-			<h:form class="user-login" id = "form">
-				<h:inputText id = "email"
-						pt:placeholder ="Enter your email"
-						class="email-input"
-						pt:title="Enter your email"
-						required="true"
-						value="#{LoginControl.email}"/>
-				<h:inputText id = "password"
-						class="password-input"
-						pt:title="Password"
-						required="true"
-						value="#{LoginControl.password}"/>
-				<h:commandButton id="login-butt"
-                        class="login-confirm-button active"
-					    value ="login"
-                        action="#{LoginControl.submit}">
-                    <!--ajax for async update of table -->
-					<h:outputText value="#{LoginControl.message}"/>
+	<h:panelGroup class="user-login" layout="block">
+            <h:form id="form" class="user-login">
+		<h:inputText id = "email"
+                             pt:placeholder ="Enter your email"
+                             class="email-input"
+                             pt:title="Enter your email"
+                             required="true"
+                             value="#{loginControl.email}"/>
+		<h:inputText id = "password"
+                             class="password-input"
+                             pt:title="Password"
+                             required="true"
+                             value="#{loginControl.password}"/>
+		<h:commandButton id="login-butt"
+                                 class="login-confirm-button active"
+                                 value ="login"
+                                 action="#{loginControl.submit(customer)}">
                     <f:ajax execute="@form" resetValues="true" render="@form"/>
-                </h:commandButton>				
-			</h:form>
-		</h:panelGroup>
+                </h:commandButton>
+		<h:message id="login-error" class="error" for="user-login"/>
+            </h:form>
+        </h:panelGroup>
 		
-	  </h:body>
+    </h:body>
       
 </html>

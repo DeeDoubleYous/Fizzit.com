@@ -36,7 +36,7 @@ public class TradeLimitValidator implements Validator<String>, Serializable{
             NB: limit is hardcoded here - In future should resolve by storing 
             this in a Bean that can be configured while the application is running.
         */
-        if(localTradeList.getItems().size() >= 100){
+        if(localTradeList.getTotalItems() >= 100){
             throw new ValidatorException(
                     new FacesMessage("100 items is the maximum trade amount!"));
         }

@@ -1,5 +1,6 @@
 package bton.ci536.fizzit.database;
 
+import bton.ci536.fizzit.trade.TradeItem;
 import java.io.Serializable;
 
 import javax.inject.Named;
@@ -18,17 +19,21 @@ public class Product implements Serializable{
 	@Id
 	@Column(name = "productBarcode")
 	private String barcode;
+    @Column(name = "productType")
+    private int type;
 	@Column(name = "productPrice")
 	private double price;
 	@Column(name = "productName")
 	private String name;
-	@Column(name = "productType")
-	private String type;
 
 	
 	public String getBarcode() {
 		return barcode;
 	}
+        
+        public int getType() {
+                return type;
+        }
 	
 	public double getPrice() {
 		return price;
@@ -38,13 +43,14 @@ public class Product implements Serializable{
 		return name;
 	}
 	
-	public String getType() {
-		return type;
-	}
 	
 	public void setBarcode(String bar) {
 		this.barcode = bar;
 	}
+        
+        public void setType(int type) {
+                this.type = type;
+        }
 	
 	public void setPrice(double price) {
 		this.price = price;
@@ -54,9 +60,13 @@ public class Product implements Serializable{
 		this.name = name;
 	}
 	
-	public void setType(String type) {
-		this.type = type;
-	}
-	
-	
+        public TradeItem toTradeItem(){
+            TradeItem item = new TradeItem();
+            item.setBarcode(barcode);
+            item.setItemType(type);
+            item.setItemAmount(price);
+            item.setItemName(name);
+            item.setItemQuantity(1);
+            return item;
+        }
 }

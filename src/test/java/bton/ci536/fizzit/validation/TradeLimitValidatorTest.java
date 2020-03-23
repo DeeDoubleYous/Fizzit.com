@@ -51,9 +51,7 @@ public class TradeLimitValidatorTest {
             Fill the localTradeList of dummy items to get to 100 limit. 
             then test.
         */
-        for (int i = 0; i < 100; i++) {
-            localTradeList.getItems().add(null);
-        }
+        localTradeList.setTotalItems(100);
         
         try {
             validator.validate(null, null, null);

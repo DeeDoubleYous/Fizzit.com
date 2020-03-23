@@ -1,69 +1,80 @@
 package bton.ci536.fizzit.userLogin;
 
 import java.io.Serializable;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.annotation.ManagedProperty;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 import bton.ci536.fizzit.database.Customer;
-import bton.ci536.fizzit.trade.LocalTradeList;
+import java.io.IOException;
+import javax.enterprise.context.SessionScoped;
 
-
-@Named("LoginControl")
+@Named
 @SessionScoped
-public class LoginControl implements Serializable{
-	
-	
-	
-	@PersistenceContext(name="twoo")
-	EntityManager em;
-	
-	private static final long serialVersionUID = 1L;
-	private String email;
-	private String password;
-	
-	private String message;
-	
-	private Customer customer;
-	
-	@ManagedProperty(value = "#{LocalTradeList}")
-	LocalTradeList tradeControl;
-	
-	public String getEmail() {
-		return email;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
-	
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public void submit() {
-		TypedQuery<Customer> q = em.createQuery("select c from Customer c where c.email = '" + email + "' and c.password = '" + password + "'", Customer.class);
-		try {
-			customer = q.getSingleResult();
-			message = customer.getFname();
-		}catch(Exception c) {
-			message = "either your email or password was incorrect";
-		}
-	}
+public class LoginControl implements Serializable {
+    
 
-	public String getMessage() {
-		return message;
-	}
+    @PersistenceContext(name = "twoo")
+    EntityManager em;
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
+    private static final long serialVersionUID = 1L;
+    private String email;
+    private String password;
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    
+
+    public void submit(Customer customer) {
+        
+        
+        Customer cust = em.createNamedQuery("userLogin", Customer.class)
+                .setParameter("cEmail", email)
+                .setParameter("cPass", password)
+                .getSingleResult();
+        
+        if (cust == null) {
+            email = null;
+            password = null;
+            FacesContext.getCurrentInstance()
+                    .addMessage("form:user-login", 
+                            new FacesMessage("Unfortunatly either the "
+                                    + "password or email was incorrect, "
+                                    + "please try again"));
+        } else {
+            //hack to update managed bean :(
+            customer.setCustomerId(cust.getCustomerId());
+            customer.setEmail(cust.getEmail());
+            customer.setFname(cust.getFname());
+            customer.setPassword(cust.getPassword());
+            customer.setSname(cust.getSname());
+            customer.setTrades(cust.getTrades());
+            try {
+            FacesContext
+                    .getCurrentInstance()
+                    .getExternalContext()
+                    .redirect("/Fizzit.com/index.xhtml");
+            } catch(IOException ex)
+            {
+                ex.printStackTrace(System.err);
+            }
+        }
+    }
 }
