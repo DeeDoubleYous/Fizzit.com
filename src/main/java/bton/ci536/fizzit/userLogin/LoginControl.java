@@ -70,7 +70,7 @@ public class LoginControl implements Serializable {
             FacesContext
                     .getCurrentInstance()
                     .getExternalContext()
-                    .redirect("/Fizzit.com/index.xhtml");
+                    .redirect("index.xhtml");
             } catch(IOException ex)
             {
                 ex.printStackTrace(System.err);
