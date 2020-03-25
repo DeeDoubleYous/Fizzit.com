@@ -29,7 +29,7 @@ public class Trader {
         if(customer.getCustomerId() == null) {
             try {
                 FacesContext.getCurrentInstance().getExternalContext()
-                        .redirect("/Fizzit.com/userlogin.xhtml");
+                        .redirect("userlogin.xhtml");
             } catch(IOException ex)
             {
                 ex.printStackTrace(System.err);
