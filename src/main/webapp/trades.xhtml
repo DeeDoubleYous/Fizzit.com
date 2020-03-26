@@ -27,7 +27,7 @@
         
         <comp:menu/>
         
-        <ui:repeat value="#{customer.trades}" var="ctrade">
+        <ui:repeat value="#{tradeRepository.getByCustomer(customer)}" var="ctrade">
             <div class="trade-container">
                 <header>
                     <span>Trade Id: #{ctrade.tradeId}</span>

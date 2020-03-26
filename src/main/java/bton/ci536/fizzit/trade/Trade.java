@@ -16,11 +16,24 @@ import javax.persistence.Table;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author Max Cripps <43726912+mc1098@users.noreply.github.com>
  */
+@NamedQueries({
+        @NamedQuery(
+                name = "byCustomer",
+                query = "select t from Trade t where t.customer.customerId like :custId"
+        ),
+        @NamedQuery(
+                name = "all",
+                query = "select t from Trade t"
+        )
+        
+})
 @Named
 @Entity
 @Table(name = "Trade")
@@ -64,9 +77,12 @@ public class Trade implements Serializable, Comparable<Trade>{
     public void setTradeStatuses(Set<TradeStatus> tradeStatuses) {
         this.tradeStatuses = tradeStatuses;
     }
+    
+    public Customer getCustomer() {
+        return customer;
+    }
 
     public void setCustomer(Customer customer) {
-        customer.addTrade(this);
         this.customer = customer;
     }
     

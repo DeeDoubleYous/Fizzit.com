@@ -82,7 +82,7 @@ public class TradeStatus implements Serializable, Comparable<TradeStatus>{
         }
         return "unknown";
     }
-
+    
     @Override
     public int compareTo(TradeStatus o) {
         return statusDateTime.compareTo(o.statusDateTime);
