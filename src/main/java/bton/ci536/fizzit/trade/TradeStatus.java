@@ -18,6 +18,11 @@ import javax.persistence.Table;
 @Table(name = "TradeStatus")
 public class TradeStatus implements Serializable, Comparable<TradeStatus>{
     
+    public final static int PENDING_DELIVERY = 0;
+    public final static int IN_TRANSIT_TO_WAREHOUSE = 1;
+    public final static int CHECKING_AT_WAREHOUSE = 2;
+    public final static int COMPLETED = 3;
+    
     @Id
     @Column(name = "status")
     private int status;
@@ -62,6 +67,20 @@ public class TradeStatus implements Serializable, Comparable<TradeStatus>{
 
     public void setTrade(Trade trade) {
         this.trade = trade;
+    }
+    
+    public String getStatusString() {
+        switch(status){
+            case PENDING_DELIVERY: 
+                return "Pending Delivery";
+            case IN_TRANSIT_TO_WAREHOUSE: 
+                return "In Transit To Warehouse";
+            case CHECKING_AT_WAREHOUSE: 
+                return "Checking at Warehouse";
+            case COMPLETED: 
+                return "Completed";
+        }
+        return "unknown";
     }
 
     @Override

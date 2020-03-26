@@ -24,7 +24,7 @@ import javax.persistence.JoinColumn;
 @Named
 @Entity
 @Table(name = "Trade")
-public class Trade implements Serializable{
+public class Trade implements Serializable, Comparable<Trade>{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,10 +37,7 @@ public class Trade implements Serializable{
             orphanRemoval = true
     )
     @JoinColumn(referencedColumnName = "tradeTradeId")
-    private TreeSet<TradeStatus> tradeStatuses;
-    
-//    @Column(name = "tradeStatus")
-//    private int status;
+    private Set<TradeStatus> tradeStatuses;
     
     @OneToMany(
             cascade=CascadeType.ALL,
@@ -60,15 +57,16 @@ public class Trade implements Serializable{
         tradeStatuses.add(new TradeStatus(this));
     }
 
-    public TreeSet<TradeStatus> getTradeStatuses() {
+    public Set<TradeStatus> getTradeStatuses() {
         return tradeStatuses;
     }
 
-    public void setTradeStatuses(TreeSet<TradeStatus> tradeStatuses) {
+    public void setTradeStatuses(Set<TradeStatus> tradeStatuses) {
         this.tradeStatuses = tradeStatuses;
     }
 
     public void setCustomer(Customer customer) {
+        customer.addTrade(this);
         this.customer = customer;
     }
     
@@ -81,6 +79,20 @@ public class Trade implements Serializable{
     public Set<TradeItem> getTradeItems() {return tradeItems;}
     
     
+    public TradeStatus getLatestStatus() {
+        return tradeStatuses.stream().max(TradeStatus::compareTo).get();
+    }
     
+    public double getTotalValue() {
+        return tradeItems
+                .stream()
+                .mapToDouble(t -> t.getItemAmount() * t.getItemQuantity())
+                .sum();       
+    }
+
+    @Override
+    public int compareTo(Trade o) {
+        return this.getLatestStatus().compareTo(o.getLatestStatus());
+    }
     
 }

@@ -41,6 +41,7 @@ public class Customer implements Serializable {
             mappedBy = "Customer",
             orphanRemoval = true
     )
+    @OrderBy
     private Set<Trade> trades;
 
     public String getCustomerId() {
@@ -93,5 +94,9 @@ public class Customer implements Serializable {
 
     public boolean passwordMatch(String enteredPass) {
         return password.equals(enteredPass);
+    }
+    
+    public void addTrade(Trade trade) {
+        this.trades.add(trade);
     }
 }
