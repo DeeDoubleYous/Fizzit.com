@@ -83,6 +83,14 @@ public class TradeStatus implements Serializable, Comparable<TradeStatus>{
         return "unknown";
     }
     
+    public TradeStatus next() {
+        if(status == COMPLETED)
+            return this;
+        TradeStatus next = new TradeStatus(trade);
+        next.status = this.status+1;
+        return next;
+    }
+    
     @Override
     public int compareTo(TradeStatus o) {
         return statusDateTime.compareTo(o.statusDateTime);

@@ -99,6 +99,11 @@ public class Trade implements Serializable, Comparable<Trade>{
         return tradeStatuses.stream().max(TradeStatus::compareTo).get();
     }
     
+    public void nextStatus() {
+        TradeStatus ts = getLatestStatus().next();
+        tradeStatuses.add(ts);
+    }
+    
     public double getTotalValue() {
         return tradeItems
                 .stream()

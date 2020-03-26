@@ -44,6 +44,16 @@ public class TradeRepository {
         return trades;
     }
     
-   
+   public void update(Trade trade) {
+        
+        try {
+            ut.begin();
+            trade.nextStatus();
+            em.merge(trade);
+            ut.commit();
+        } catch(Exception ex) {
+            ex.printStackTrace(System.err);
+        }
+    }
     
 }
