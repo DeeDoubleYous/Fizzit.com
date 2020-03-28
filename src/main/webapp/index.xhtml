@@ -43,9 +43,12 @@
                     </h:panelGroup>
                     <h:message id="trade-err" class="error" for="trade-btn"/>
                     <h:message id="errmsg" class="error" for="bcode"/>
-                    <h:outputText id ="totalPrice" class="trade-total" value = "#{localTradeList.totalValue}"/>
+                    <h:outputText id ="totalPrice" class="trade-total" value = "#{localTradeList.totalValue}">
+                        <f:convertNumber type="currency"/>
+                    </h:outputText>
                     <h:commandButton class="trade-btn btn" 
-                                     value="Confirm Trade" 
+                                     value="Confirm Trade"
+                                     disabled="#{localTradeList.totalValue lt 1.00}"
                                      action="#{trader.trade(customer, localTradeList)}">
                     </h:commandButton>
                     <!-- dataTable instead of ui:repeat for clear and easy table -->

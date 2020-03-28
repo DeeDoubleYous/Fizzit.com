@@ -64,7 +64,6 @@ public class LoginControl implements Serializable {
             customer.setFname(cust.getFname());
             customer.setPassword(cust.getPassword());
             customer.setSname(cust.getSname());
-            customer.setTrades(cust.getTrades());
             try {
             FacesContext
                     .getCurrentInstance()

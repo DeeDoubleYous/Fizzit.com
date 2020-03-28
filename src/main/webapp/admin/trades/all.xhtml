@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"/>
+        <h:outputStylesheet name="css/style.css" />
+        <title>Admin ALL Trades | Fizzit.com</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <body>
+        <ui:repeat value="#{tradeRepository.all}" var="ctrade">
+            <div class="trade-container">
+                <header>
+                    <span>User: #{ctrade.customer.customerId}</span>
+                    <span>Trade Id: #{ctrade.tradeId}</span>
+                    <span>#{ctrade.latestStatus.statusString}</span>
+                    Total: 
+                    <h:outputText value="#{ctrade.totalValue}">
+                        <f:convertNumber type="currency"/>
+                    </h:outputText>
+                    <c:if test="#{ctrade.latestStatus.status != 3}">
+                        <h:form>
+                            <h:commandLink action="#{tradeRepository.update(ctrade)}">Progress</h:commandLink>
+                        </h:form>
+                    </c:if>
+                    
+                </header>
+                <h:dataTable value="#{ctrade.tradeItems}"
+                             var="item"
+                             styleClass="trade-table">
+                    <h:column>
+                        <f:facet name="header">Barcode</f:facet>
+                        #{item.barcode}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Item</f:facet>
+                        #{item.itemName}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Quantity</f:facet>
+                        #{item.itemQuantity}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Amount</f:facet>
+                        #{item.formattedPrice}
+                    </h:column>
+                </h:dataTable>
+                
+            </div>
+        </ui:repeat>
+    </body>
+</html>
