@@ -92,7 +92,7 @@ public class TradeStatus implements Serializable, Comparable<TradeStatus>{
     }
     
     public TradeStatus next() {
-        if(status == COMPLETED)
+        if(status < COMPLETED)
             return this;
         TradeStatus next = new TradeStatus(trade);
         next.status = this.status+1;
