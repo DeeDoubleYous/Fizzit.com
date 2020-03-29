@@ -48,7 +48,6 @@ public class TradeRepository {
         
         try {
             ut.begin();
-            trade.nextStatus();
             em.merge(trade);
             ut.commit();
         } catch(Exception ex) {
