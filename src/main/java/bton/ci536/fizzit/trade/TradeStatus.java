@@ -22,6 +22,7 @@ public class TradeStatus implements Serializable, Comparable<TradeStatus>{
     public final static int IN_TRANSIT_TO_WAREHOUSE = 1;
     public final static int CHECKING_AT_WAREHOUSE = 2;
     public final static int COMPLETED = 3;
+    public final static int CANCELLED = 4;
     
     @Id
     @Column(name = "status")
@@ -43,6 +44,11 @@ public class TradeStatus implements Serializable, Comparable<TradeStatus>{
     public TradeStatus(Trade trade) {
         this();
         this.trade = trade;
+    }
+    
+    public TradeStatus(Trade trade, int status) {
+        this(trade);
+        this.status = status;
     }
 
     public int getStatus() {
@@ -79,6 +85,8 @@ public class TradeStatus implements Serializable, Comparable<TradeStatus>{
                 return "Checking at Warehouse";
             case COMPLETED: 
                 return "Completed";
+            case CANCELLED: 
+                return "Cancelled";
         }
         return "unknown";
     }

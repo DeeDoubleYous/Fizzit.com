@@ -104,6 +104,10 @@ public class Trade implements Serializable, Comparable<Trade>{
         tradeStatuses.add(ts);
     }
     
+    public void cancelTrade() {
+        tradeStatuses.add(new TradeStatus(this, TradeStatus.CANCELLED));
+    }
+    
     public double getTotalValue() {
         return tradeItems
                 .stream()
