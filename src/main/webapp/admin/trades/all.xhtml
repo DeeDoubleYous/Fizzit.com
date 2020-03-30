@@ -25,11 +25,12 @@
                     <h:outputText value="#{ctrade.totalValue}">
                         <f:convertNumber type="currency"/>
                     </h:outputText>
-                    <c:if test="#{ctrade.latestStatus.status != 3}">
-                        <h:form>
-                            <h:commandLink action="#{tradeRepository.update(ctrade)}">Progress</h:commandLink>
-                        </h:form>
-                    </c:if>
+                    <h:form rendered="#{ctrade.latestStatus.status != 3}">
+                        <h:commandLink value="Progress">
+                            <f:actionListener binding="#{ctrade.nextStatus()}"/>
+                            <f:actionListener binding="#{tradeRepository.update(ctrade)}"/>
+                        </h:commandLink>
+                    </h:form>
                     
                 </header>
                 <h:dataTable value="#{ctrade.tradeItems}"

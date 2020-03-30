@@ -28,7 +28,7 @@
         <comp:menu/>
         
         <ui:repeat value="#{tradeRepository.getByCustomer(customer)}" var="ctrade">
-            <div class="trade-container">
+            <h:panelGroup rendered="true" layout="block" class="trade-container">
                 <header>
                     <span>Trade Id: #{ctrade.tradeId}</span>
                     <span>#{ctrade.latestStatus.statusString}</span>
@@ -36,7 +36,12 @@
                     <h:outputText value="#{ctrade.totalValue}">
                         <f:convertNumber type="currency"/>
                     </h:outputText>
-                    
+                    <h:form rendered="#{ctrade.latestStatus.status == 0}">
+                        <h:commandLink value="Cancel">
+                            <f:actionListener binding="#{ctrade.cancelTrade()}"/>
+                            <f:actionListener binding="#{tradeRepository.update(ctrade)}"/>
+                        </h:commandLink>
+                    </h:form>
                 </header>
                 <h:dataTable value="#{ctrade.tradeItems}"
                              var="item"
@@ -59,7 +64,7 @@
                     </h:column>
                 </h:dataTable>
                 
-            </div>
+            </h:panelGroup>
         </ui:repeat>
     </body>
 </html>
