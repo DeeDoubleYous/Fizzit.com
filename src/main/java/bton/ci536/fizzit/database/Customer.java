@@ -1,11 +1,5 @@
 package bton.ci536.fizzit.database;
 
-import java.io.Serializable;
-import bton.ci536.fizzit.trade.Trade;
-import java.io.Serializable;
-import java.util.Set;
-import javax.enterprise.context.SessionScoped;
-
 import javax.inject.Named;
 import javax.persistence.*;
 
@@ -17,7 +11,6 @@ import javax.persistence.*;
                 + "c.email like :cEmail and c.password like :cPass"
         )
 )
-
 @Named
 @Entity
 @Table(name = "Customer")
@@ -38,12 +31,6 @@ public class Customer implements Serializable {
     @Column(name = "sname")
     private String sname;
 
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            mappedBy = "Customer",
-            orphanRemoval = true
-    )
-    private Set<Trade> trades;
 
     public String getCustomerId() {
         return customerId;
@@ -85,15 +72,8 @@ public class Customer implements Serializable {
         this.sname = sname;
     }
 
-    public Set<Trade> getTrades() {
-        return trades;
-    }
-
-    public void setTrades(Set<Trade> trades) {
-        this.trades = trades;
-    }
 
     public boolean passwordMatch(String enteredPass) {
         return password.equals(enteredPass);
-    }
+	}
 }

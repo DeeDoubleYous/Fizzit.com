@@ -62,8 +62,8 @@ public class LocalTradeList implements Serializable{
         this.totalValue = totalValue;
     }
     
-    public String getTotalValue() {
-    	return String.format("Total Value: £%.2f", totalValue);
+    public double getTotalValue() {
+        return totalValue;
     }
 
     public int getTotalItems() {

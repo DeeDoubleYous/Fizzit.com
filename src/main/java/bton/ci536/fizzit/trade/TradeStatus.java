@@ -18,6 +18,12 @@ import javax.persistence.Table;
 @Table(name = "TradeStatus")
 public class TradeStatus implements Serializable, Comparable<TradeStatus>{
     
+    public final static int PENDING_DELIVERY = 0;
+    public final static int IN_TRANSIT_TO_WAREHOUSE = 1;
+    public final static int CHECKING_AT_WAREHOUSE = 2;
+    public final static int COMPLETED = 3;
+    public final static int CANCELLED = 4;
+    
     @Id
     @Column(name = "status")
     private int status;
@@ -38,6 +44,11 @@ public class TradeStatus implements Serializable, Comparable<TradeStatus>{
     public TradeStatus(Trade trade) {
         this();
         this.trade = trade;
+    }
+    
+    public TradeStatus(Trade trade, int status) {
+        this(trade);
+        this.status = status;
     }
 
     public int getStatus() {
@@ -63,7 +74,31 @@ public class TradeStatus implements Serializable, Comparable<TradeStatus>{
     public void setTrade(Trade trade) {
         this.trade = trade;
     }
-
+    
+    public String getStatusString() {
+        switch(status){
+            case PENDING_DELIVERY: 
+                return "Pending Delivery";
+            case IN_TRANSIT_TO_WAREHOUSE: 
+                return "In Transit To Warehouse";
+            case CHECKING_AT_WAREHOUSE: 
+                return "Checking at Warehouse";
+            case COMPLETED: 
+                return "Completed";
+            case CANCELLED: 
+                return "Cancelled";
+        }
+        return "unknown";
+    }
+    
+    public TradeStatus next() {
+        if(status < COMPLETED)
+            return this;
+        TradeStatus next = new TradeStatus(trade);
+        next.status = this.status+1;
+        return next;
+    }
+    
     @Override
     public int compareTo(TradeStatus o) {
         return statusDateTime.compareTo(o.statusDateTime);
