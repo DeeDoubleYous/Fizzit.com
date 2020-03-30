@@ -1,5 +1,8 @@
 package bton.ci536.fizzit.database;
 
+import java.io.Serializable;
+
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.persistence.*;
 
