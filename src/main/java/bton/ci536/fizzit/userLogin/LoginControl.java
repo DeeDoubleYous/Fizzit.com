@@ -1,6 +1,7 @@
 package bton.ci536.fizzit.userLogin;
 
 import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -68,12 +69,24 @@ public class LoginControl implements Serializable {
             FacesContext
                     .getCurrentInstance()
                     .getExternalContext()
-                    .redirect("/Fizzit.com/index.xhtml");
+                    .redirect("index.xhtml");
             } catch(IOException ex)
             {
                 ex.printStackTrace(System.err);
             }
         }
     }
-
+    
+    public void logOut(Customer cust) {
+    	cust.setCustomerId(null);
+    	cust.setEmail(null);
+    	cust.setFname(null);
+    	cust.setPassword(null);
+    	cust.setSname(null);
+    	try {
+    		FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+    	}catch(IOException ex) {
+    		ex.printStackTrace(System.err);
+    	}
+    }
 }

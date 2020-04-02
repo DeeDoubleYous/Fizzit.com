@@ -2,7 +2,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:cc="http://xmlns.jcp.org/jsf/composite"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <cc:interface>
         <cc:attribute name="hidden" default="false"/>
@@ -19,9 +21,14 @@
                         #{customer.fname}
                         <i class="far fa-user"></i>
                     </div>
-                    <div class="user-menu">
+                    <h:form class="user-menu">
                         <a href="./trades.xhtml">Trades</a>
-                    </div>
+                        <h:commandLink id="log-out"
+                        				class="log-out-btn"
+                        				value="Log out"
+                        				action="#{loginControl.logOut(customer)}">
+                        </h:commandLink>
+                    </h:form>
                 </c:if>
                 <c:if test="#{customer.customerId == null}">
                     <a class="sign-in btn menu-item" href="/Fizzit.com/userlogin.xhtml">Sign in</a>
