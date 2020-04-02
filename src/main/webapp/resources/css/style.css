@@ -231,8 +231,9 @@ main{
     background: #333;
 }
 
-
-
+.user-sec{
+	color: #fff;
+}
 
 .log-out{
 	color: white;
