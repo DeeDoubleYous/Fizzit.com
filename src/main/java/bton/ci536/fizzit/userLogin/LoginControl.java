@@ -76,4 +76,17 @@ public class LoginControl implements Serializable {
             }
         }
     }
+    
+    public void logOut(Customer cust) {
+    	cust.setCustomerId(null);
+    	cust.setEmail(null);
+    	cust.setFname(null);
+    	cust.setPassword(null);
+    	cust.setSname(null);
+    	try {
+    		FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+    	}catch(IOException ex) {
+    		ex.printStackTrace(System.err);
+    	}
+    }
 }
