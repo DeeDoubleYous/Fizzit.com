@@ -31,8 +31,6 @@ public class LocalTradeList implements Serializable{
     private double totalValue = 0;
     private int totalItems = 0;
     
-    private Customer customer;
-    
     public LocalTradeList() {
         this.items = new HashMap<>();
     }
@@ -133,12 +131,4 @@ public class LocalTradeList implements Serializable{
         totalValue = 0;
         items.clear();
     }
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
 }
