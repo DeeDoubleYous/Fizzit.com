@@ -7,7 +7,6 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import bton.ci536.fizzit.database.Customer;
 import bton.ci536.fizzit.database.Product;
 import java.util.Collection;
 import java.util.HashMap;
