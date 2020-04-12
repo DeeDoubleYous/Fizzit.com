@@ -92,6 +92,7 @@ a , a:visited > i{
 body{
     align-items:center;
     background:#121212;
+    overflow-x:hidden;
 }
 
 .error{
@@ -152,6 +153,11 @@ main{
     height: 90vh;
 }
 
+.trade-btn {
+    width: 270px;
+    margin: auto;
+}
+
 .trade-container{
     align-items: center;
     background: #202020;
@@ -159,6 +165,7 @@ main{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin: auto;
     padding: 30px 60px;
     width:600px;
 }
@@ -201,16 +208,17 @@ main{
 }
 
 .user-menu a{
-    text-decoration: none;
-    color: #fff;
     background: #202020;
-    padding: 8px 2px;
+    color: #fff;
     display: none;
+    padding: 8px 2px;
+    text-decoration: none;
     transition: 0.3s all;
 }
 
 .user-menu a:hover{
-    opacity: 0.7;
+    color: #4bf;
+    opacity: 0.8;
 }
 
 
