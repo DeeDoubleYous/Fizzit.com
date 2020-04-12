@@ -75,7 +75,7 @@
                             <h:commandLink
                                     id="deleteItem"
                                     action="#{localTradeList.deleteItem(item)}">
-                                <f:ajax execute="@form" resetValues="true" render="@form trade-list"/>
+                                <f:ajax execute="@trade-list" resetValues="true" render="@form trade-list"/>
                                 <i class="far fa-trash-alt"></i>
                             </h:commandLink>
                         </h:column>
