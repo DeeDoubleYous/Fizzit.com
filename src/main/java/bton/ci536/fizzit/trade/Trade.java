@@ -29,6 +29,10 @@ import javax.persistence.NamedQuery;
                 query = "select t from Trade t where t.customer.customerId like :custId"
         ),
         @NamedQuery(
+                name = "byCustomerAndTradeId",
+                query = "select t from Trade t where t.customer.customerId = :custId and t.tradeId = :tradeId"
+        ),
+        @NamedQuery(
                 name = "all",
                 query = "select t from Trade t"
         )
