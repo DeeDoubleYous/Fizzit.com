@@ -93,6 +93,49 @@ body{
     align-items:center;
     background:#121212;
     overflow-x:hidden;
+    color: #fff;
+}
+
+.email {
+    background: #202020;
+    display: flex;
+    flex-direction: column;
+    margin: 40px auto;
+    width: 60vw;
+}
+
+.email footer {
+    background: #14141a;
+    text-align: center;
+}
+
+.email footer .auto-mail-warning {
+    font-size: 10px;
+    font-style:italic;
+    margin: 20px;
+}
+
+.email .greeting {
+    margin: 20px;
+}
+
+.email .header {
+    align-items: baseline;
+    border-bottom: 5px solid #1a1a1a;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.email p{
+    margin: 10px auto;
+}
+
+.email .qr-code {
+    margin:auto;
+    text-align:center;
+    width: 80%;
 }
 
 .error{
@@ -107,13 +150,13 @@ h1{
     padding: 20px;
 }
 
-.header{
+.top-row{
     background: #202020;
     width: 100vw;
     height: 10vh;
 }
 
-.header .logo{
+.top-row .logo{
     cursor: context-menu;
     float: left;
     margin-left: 20px;
@@ -121,11 +164,11 @@ h1{
     padding: 0;
 }
 
-.header .logo a{
+.top-row .logo a{
     text-decoration: none;
 }
 
-.header .menu{
+.top-row .menu{
     width: 100px;
     align-items: center;
     float: right;
@@ -133,11 +176,11 @@ h1{
     margin-right: 20px;
 }
 
-.header .menu:hover .user-menu a{
+.top-row .menu:hover .user-menu a{
     display: block;
 }
 
-.header .menu .menu-item{
+.top-row .menu .menu-item{
     margin: 0px 5px 0 5px;
 }
 

@@ -36,6 +36,17 @@ public class TradeRepository {
         return trades;
     }
     
+    public Trade getByCustomerAndTradeId(Customer c, String tradeId) {
+        Trade t = em
+                .createNamedQuery("byCustomerAndTradeId", Trade.class)
+                .setParameter("custId", c.getCustomerId())
+                .setParameter("tradeId", Long.valueOf(tradeId))
+                .getSingleResult();
+        
+        em.getEntityManagerFactory().getCache().evictAll();
+        return t;
+    }
+    
     public List<Trade> getAll() {
         List<Trade> trades = em
                 .createNamedQuery("all", Trade.class)
