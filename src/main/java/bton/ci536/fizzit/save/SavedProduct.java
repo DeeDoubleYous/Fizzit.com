@@ -1,6 +1,8 @@
 package bton.ci536.fizzit.save;
 
 import bton.ci536.fizzit.database.Customer;
+
+import java.io.Serializable;
 import javax.inject.Named;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,20 +15,20 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @NamedQueries({
-	@NamedQuery(
-			name = "byCustomer",
-			query = "select t from SavedProduct t where t.customer.customerId like :custId"
-	),
-	@NamedQuery(
-			name = "byBarcodeAndCustomer",
-			query = "select t from SavedProduct t where t.customer.customerId like :custId and t.productBarcode like :prodBarc"
-	)
+	 @NamedQuery(
+			 name = "custSavedList", 
+			 query = "select s from SavedProduct s where s.customer.customerId like :custId")
 })
-
 @Named
 @Entity
-@Table(name="SavedProduct")
-public class SavedProduct {
+@Table(name = "SavedProduct")
+
+public class SavedProduct implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name="productBarcode")
 	private String productBarcode;

@@ -1,9 +1,7 @@
 package bton.ci536.fizzit.save;
 
 import bton.ci536.fizzit.database.Customer;
-
 import java.util.List;
-
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,7 +17,7 @@ public class SaveRepository {
 	}
 	
 	public List<SavedProduct> getByCustomerId(String customerId){
-		List<SavedProduct> saved = em.createNamedQuery("byCustomer", SavedProduct.class).setParameter("custId", customerId).getResultList();
+		List<SavedProduct> saved = em.createNamedQuery("custSavedList", SavedProduct.class).setParameter("custId", customerId).getResultList();
 		em.getEntityManagerFactory().getCache().evictAll();
 		return saved;
 	}
