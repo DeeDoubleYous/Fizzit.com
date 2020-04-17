@@ -22,12 +22,11 @@
     </h:head>
 	<h:body>
 		<comp:menu/>
-		
-		<ui:repeat value = "#{saveRepository.getByCustomer(customer)}" var="csaved">
-			<h:dataTable value = "{csaved.savedProduct}">
-				
-			</h:dataTable>
-		</ui:repeat>
-		
+		<h:dataTable value = "#{saveRepository.getByCustomer(customer)}" var = "item">
+			<h:column>
+				<f:facet name = "header">Barcode</f:facet>
+				#{item.productBarcode}
+			</h:column>
+		</h:dataTable>
 	</h:body>
 </html>
