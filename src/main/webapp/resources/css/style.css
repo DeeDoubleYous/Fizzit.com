@@ -39,21 +39,6 @@ a , a:visited > i{
     background: #484848 !important;
 }
 
-.barcode-input-btn{
-    background:#037bee;
-    border:none;
-    color:#fff;
-    cursor:pointer;
-    height:50px;
-    outline:none;
-    text-transform:uppercase;
-    transition: 1s linear;
-}
-
-.barcode-input-btn.active:hover{
-    opacity: .7;
-}
-
 .barcode-widget{
     align-items: center;
     display: flex;
@@ -68,8 +53,10 @@ a , a:visited > i{
     cursor: pointer;
     font-weight: 700;
     height: 50px;
+    line-height: 30px;
     outline: none;
     padding: 10px;
+    text-align: center;
     text-transform: uppercase;
     text-decoration: none;
     transition: color 1s linear;
@@ -81,12 +68,14 @@ a , a:visited > i{
 }
 
 .btn:disabled:hover{
+    background: #444;
+    color: #666;
     cursor:context-menu;
     opacity:1;
 }
 
 .btn:hover{
-    opacity: .7;
+    background: #138bff;
 }
 
 body{
@@ -96,6 +85,20 @@ body{
     color: #fff;
 }
 
+.confirmation-container{
+    display:flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-evenly;
+    margin: auto;
+    max-width: 400px;
+    text-align: center;
+    width: 80%;
+}
+
+.confirmation-condition-notice{
+    font-size: 12px;
+}
 .email {
     background: #202020;
     display: flex;

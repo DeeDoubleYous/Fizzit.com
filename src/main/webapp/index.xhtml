@@ -27,7 +27,6 @@
                                      class="barcode-input"
                                      maxlength="13"
                                      pt:title="Enter a barcode"
-                                     required="true"
                                      value="#{localTradeList.barcode}">
                             <f:validator binding="#{barcodeValidator}"/>
                             <f:validator binding="#{tradeLimitValidator}"/>
@@ -49,6 +48,7 @@
                                      value="Confirm Trade"
                                      disabled="#{localTradeList.totalValue lt 1.00}"
                                      action="#{trader.trade(customer, localTradeList)}">
+                        <f:ajax resetValues="true" render="@form"/> 
                     </h:commandButton>
                     <!-- dataTable instead of ui:repeat for clear and easy table -->
                     <h:dataTable id="trade-list" 
