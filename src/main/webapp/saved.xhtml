@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	<c:if test"#customer.customerId == null">
+		<script>
+			window.location.replace("Fizzit.com/userlogin.xhtml");
+		</script>
+	</c:if>
+	
+    <h:head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"/>
+        <h:outputStylesheet name="css/style.css" />
+        <title>#{customer.fname} Saved | Fizzit.com</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+	<h:body>
+		<comp:menu/>
+		
+		<ui:repeat value = "#{saveRepository.getByCustomer(customer)}" var="csaved">
+			<h:dataTable value = "{csaved.savedProduct}">
+				
+			</h:dataTable>
+		</ui:repeat>
+		
+	</h:body>
+</html>
