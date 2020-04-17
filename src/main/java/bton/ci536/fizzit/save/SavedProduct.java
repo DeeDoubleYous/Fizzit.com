@@ -17,7 +17,10 @@ import javax.persistence.Table;
 @NamedQueries({
 	 @NamedQuery(
 			 name = "custSavedList", 
-			 query = "select s from SavedProduct s where s.customer.customerId like :custId")
+			 query = "select s from SavedProduct s where s.customer.customerId like :custId"),
+	 @NamedQuery(
+			 name = "byCustAndBarcode",
+			 query = "select s from SavedProduct s where s.customer.customerId like :custId and s.productBarcode like :prodBar")
 })
 @Named
 @Entity

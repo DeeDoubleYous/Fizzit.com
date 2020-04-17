@@ -7,11 +7,12 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-	<c:if test"#customer.customerId == null">
-		<script>
-			window.location.replace("Fizzit.com/userlogin.xhtml");
-		</script>
-	</c:if>
+	
+	<c:if test="#{customer.customerId == null}">
+        <script>
+            window.location.replace("/Fizzit.com/userlogin.xhtml");
+        </script>
+    </c:if>
 	
     <h:head>
         <meta charset="utf-8" />
@@ -22,10 +23,10 @@
     </h:head>
 	<h:body>
 		<comp:menu/>
-		<h:dataTable value = "#{saveRepository.getByCustomer(customer)}" var = "item">
+		<h:dataTable value = "#{saveRepository.getByCustomer(customer)}" var = "savedItem">
 			<h:column>
 				<f:facet name = "header">Barcode</f:facet>
-				#{item.productBarcode}
+				#{savedItem.productBarcode}
 			</h:column>
 		</h:dataTable>
 	</h:body>
