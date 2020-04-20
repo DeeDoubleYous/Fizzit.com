@@ -23,11 +23,38 @@
     </h:head>
 	<h:body>
 		<comp:menu/>
-		<h:dataTable value = "#{saveRepository.getByCustomer(customer)}" var = "savedItem">
-			<h:column>
-				<f:facet name = "header">Barcode</f:facet>
-				#{savedItem.productBarcode}
-			</h:column>
-		</h:dataTable>
+		<h:panelGroup class="trade-container">
+			<h:form id = "save-list">
+				<h:dataTable value = "#{saveRepository.getSaved(customer)}" var = "item">
+					<h:column>
+						<f:facet name = "header">Barcode</f:facet>
+						#{item.productBarcode}
+					</h:column>
+					<h:column>
+						<f:facet name = "header">ProductName</f:facet>
+						#{item.productName}
+					</h:column>
+					<h:column>
+						<f:facet name = "header">Quantity</f:facet>
+						#{item.productQuantity}
+					</h:column>
+					<h:column>
+						<f:facet name = "header">Price</f:facet>
+						#{item.getFormattedPrice()}
+					</h:column>
+					<h:column>
+						<h:commandButton id = "remove-saved" action = "#{saver.removeItem(customer, item)}" value = "remove 1">
+							<f:ajax execute="@form" resetValues="true" render="@form"/>
+						</h:commandButton>
+					</h:column>
+					<h:column>
+						<h:commandButton id = "trade-saved" action = "#{saver.moveToTradeList(customer, item, loacalTradeList)}" value = "move to trade list">
+							<f:ajax execute="@form" resetValues="true" render="@form"/>
+						</h:commandButton>
+					</h:column>
+				</h:dataTable>
+				<h:message id = "saved-message" for = "save-form" class = "error"/>
+			</h:form>
+		</h:panelGroup>
 	</h:body>
 </html>

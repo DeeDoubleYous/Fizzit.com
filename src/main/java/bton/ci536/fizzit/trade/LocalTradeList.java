@@ -130,4 +130,16 @@ public class LocalTradeList implements Serializable{
         totalValue = 0;
         items.clear();
     }
+    
+    public void addItem(TradeItem tradeItem) {
+    	totalValue += tradeItem.getItemAmount() * tradeItem.getItemQuantity();
+    	totalItems += tradeItem.getItemQuantity();
+    	if(items.containsKey(tradeItem.getBarcode())) {
+    		TradeItem inItems = items.get(tradeItem.getBarcode());
+    		inItems.setItemQuantity(inItems.getItemQuantity() + tradeItem.getItemQuantity());
+    		//items.put(tradeItem.getBarcode(), inItems);
+    	}else {
+    		items.put(tradeItem.getBarcode(), tradeItem);
+    	}
+    }
 }

@@ -27,7 +27,7 @@
         
         <comp:menu/>
         
-        <ui:repeat value="#{tradeRepository.getByCustomer(customer)}" var="ctrade">
+        <ui:repeat value="#{tradeRepository.getByCustomer(customer)}" var="ctrade" class = "trade-container">
             <h:panelGroup rendered="true" layout="block" class="trade-container">
                 <header>
                     <span>Trade Id: #{ctrade.tradeId}</span>

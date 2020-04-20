@@ -22,6 +22,7 @@ import javax.persistence.Table;
 			 name = "byCustAndBarcode",
 			 query = "select s from SavedProduct s where s.customer.customerId like :custId and s.productBarcode like :prodBar")
 })
+
 @Named
 @Entity
 @Table(name = "SavedProduct")
@@ -31,6 +32,19 @@ public class SavedProduct implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	public SavedProduct() {
+		
+	}
+	
+	public SavedProduct(String barcode, Customer customer, String name, int type, double price, int quant) {
+		this.productBarcode = barcode;
+		this.customer = customer;
+		this.productType = type;
+		this.productName = name;
+		this.productPrice = price;
+		this.productQuantity = quant;
+	}
 
 	@Id
 	@Column(name="productBarcode")
@@ -42,7 +56,7 @@ public class SavedProduct implements Serializable{
 	private Customer customer;
 	
 	@Column(name="productType")
-	private String productType;
+	private int productType;
 	
 	@Column(name="productName")
 	private String productName;
@@ -53,7 +67,7 @@ public class SavedProduct implements Serializable{
 	@Column(name="productQuantity")
 	private int productQuantity;
 	
-	public String getBarcode() {
+	public String getProductBarcode() {
 		return productBarcode;
 	}
 	
@@ -61,7 +75,7 @@ public class SavedProduct implements Serializable{
 		return customer;
 	}
 	
-	public String getProductType() {
+	public int getProductType() {
 		return productType;
 	}
 	
@@ -77,7 +91,7 @@ public class SavedProduct implements Serializable{
 		return productQuantity;
 	}
 	
-	public void setBarcode(String barcode) {
+	public void setProductBarcode(String barcode) {
 		this.productBarcode = barcode;
 	}
 	
@@ -85,7 +99,7 @@ public class SavedProduct implements Serializable{
 		this.customer = customer;
 	}
 	
-	public void setProductType(String type) {
+	public void setProductType(int type) {
 		this.productType = type;
 	}
 	
@@ -100,4 +114,8 @@ public class SavedProduct implements Serializable{
 	public void setProductQuantity(int quantity) {
 		this.productQuantity = quantity;
 	}
+	
+	 public String getFormattedPrice() {
+	        return String.format("£%.2f", productPrice * productQuantity);
+	    }
 }
