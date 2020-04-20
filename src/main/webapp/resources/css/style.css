@@ -200,7 +200,8 @@ header i{
     float: left;
     margin: 10px;
 }
-.folding-container h2, h3{
+.folding-container h2,
+.folding-container h3{
     margin: 20px 0px;
 }
 
@@ -254,9 +255,8 @@ table td {
     padding: 15px;
 }
 
-.privacy-container 
-table, 
-td{
+.privacy-container table, 
+.privacy-container table td{
     border: 1px solid #fff;
 }
 
