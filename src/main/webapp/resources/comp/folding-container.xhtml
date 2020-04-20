@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite">
+
+    <cc:interface>
+        <cc:attribute 
+            name="checkboxId" 
+            required="true" 
+            shortDescription="Unique Id required for checkbox and label"/>
+        
+        <cc:attribute 
+            name="title" 
+            required="true" 
+            shortDescription="Title of this folding container - this will be in 
+            the header element and will be viewed even when the container is collapsed"/>
+    </cc:interface>
+
+
+    <cc:implementation>
+        <div class="folding-container">
+            <input type="checkbox" class="fld-chk" name="fld" id="#{cc.attrs.checkboxId}"/>
+            <label for="#{cc.attrs.checkboxId}">
+                <header>
+                    <i class="fas fa-caret-right"/>
+                    <h2>#{cc.attrs.title}</h2>
+                </header>
+            </label>
+
+            <div class="content">
+                <cc:insertChildren />
+            </div>
+        </div>
+    </cc:implementation>
+
+</html>
