@@ -47,7 +47,7 @@ a , a:visited > i{
 }
 
 .btn{
-    background: #037bee;
+    background: #4bf;
     border: none;
     color: #fff;
     cursor: pointer;
@@ -118,7 +118,7 @@ body{
     display: flex;
     flex-direction: column;
     margin: 40px auto;
-    width: 60vw;
+    width: 70vw;
 }
 
 .email footer {
@@ -222,6 +222,14 @@ main{
     height: 90vh;
 }
 
+p{
+    /*
+        Text blocks shouldn't exceed 80 character length
+        ch unit approx's the limit for us.
+    */
+    max-width: 80ch; 
+}
+
 .privacy-container{
     background: #202020;
     height: 80vh;
@@ -309,7 +317,7 @@ table td {
     justify-content: center;
     margin: auto;
     padding: 30px 60px;
-    width:600px;
+    width:70%;
 }
 
 .trade-container p, .trade-total{
@@ -334,13 +342,11 @@ table td {
 .trade-table td{
     border-bottom: 0.5px solid #404040;
     padding: 10px;
-    width: 20%;
 }
 
 .trade-table th {
     height: 50px;
     padding: 10px;
-    width: 20%;
 }
 
 .user-menu{
@@ -383,4 +389,39 @@ table td {
 
 .user-sec{
 	color: #fff;
+}
+
+@media screen and (max-width: 750px){
+    .trade-table{
+        padding: 5px;
+    }
+
+    .trade-table td, .trade-table th {
+        padding: 5px;
+    }
+}
+
+
+@media screen and (max-width: 600px){
+
+
+    .email .qr-code{
+        width: 100%;
+    }
+    
+    .privacy-container table td {
+        padding: 5px;
+    }
+
+    .privacy-container ul {
+        margin-left: 20px;
+    }
+
+    .email,
+    .privacy-container,
+    .trade-container{
+        padding: 5px 10px;
+        width: 100%;
+    }
+    
 }
