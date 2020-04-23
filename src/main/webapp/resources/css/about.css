@@ -1,0 +1,136 @@
+/* 
+    Created on : 23 Apr 2020, 11:07:27
+    Author     : Max Cripps <43726912+mc1098@users.noreply.github.com>
+*/
+
+.about-container{
+    padding: 20px;
+}
+
+.about-container h1,
+.about-container h2{
+    border-bottom: 1px solid #4bf;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 10px;
+    margin: 20px auto;
+    text-transform: uppercase;
+    width: fit-content;
+}
+
+.general-container > p{
+    margin: 40px 0px;
+}
+
+.inner-width{
+    margin: auto;
+    max-width: 80ch;
+    padding: 0 20px;
+}
+
+.testimonial{
+    display: none;
+    left: 0;
+    margin: 20px auto;
+    position: absolute;
+    right: 0;
+    top: 90%;
+    width: 60ch;
+}
+
+.testimonial.active{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.testimonial .description{
+    color: #b8a994;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.testimonial p{
+    margin-bottom: 20px;
+}
+
+.testimonial-pic {
+    padding: 10px;
+}
+
+.testimonial-pic img {
+    border-radius: 50%;
+    cursor: pointer;
+    filter: grayscale(100%);
+    height: 80px;
+    margin: 0 20px;
+    transition: .3s;
+    width: 80px;
+}
+
+.testimonial-pic img:hover,
+.testimonial-pic img.active{
+    filter: none;
+}
+
+.testimonial-profile .phrase{
+    color: #4bf;
+    font-style:italic;
+}
+
+.testimonial-profiles{
+    display: flex;
+    justify-content:center;
+    padding: 10px;
+    position: relative;
+}
+
+.testimonial-section{
+    height: 70vh;
+    padding: 20px 0;
+    text-align:center;
+}
+.testimonial-section h2{
+    border-bottom: 1px solid #4bf;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 10px;
+    margin: auto;
+    min-width: 200px;
+    padding: 20px;
+    text-transform: uppercase;
+    width: fit-content;
+}
+
+@media screen and (max-width: 600px) {
+
+    .inner-width{
+        padding: 0px;
+    }
+    
+    .testimonial{
+        display: block;
+        position:static;
+        width: auto;
+    }
+    
+    .testimonial-pic{
+        padding: 10px;
+    }
+
+    .testimonial-pic img {
+        filter: none;
+    }
+    
+    .testimonial-profiles{
+        display:block;
+        position: static;
+    }
+    
+    .testimonial-section{
+        height: auto;
+    }
+    
+}

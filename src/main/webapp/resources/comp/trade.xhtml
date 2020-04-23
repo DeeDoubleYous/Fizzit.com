@@ -29,7 +29,7 @@
             <h:dataTable value="#{cc.attrs.trade.tradeItems}"
                          var="item"
                          styleClass="trade-table">
-                <h:column>
+                <h:column class="verbose" headerClass="verbose">
                     <f:facet name="header">Barcode</f:facet>
                         #{item.barcode}
                 </h:column>

@@ -46,6 +46,12 @@ a , a:visited > i{
     justify-content: center;
 }
 
+body, html {
+    height: 100%;
+    /*Resolves horizontal scrollbar caused by ::webkit styling*/
+    overflow-x: hidden;
+}
+
 .btn{
     background: #4bf;
     border: none;
@@ -78,13 +84,6 @@ a , a:visited > i{
     background: #138bff;
 }
 
-body{
-    align-items:center;
-    background:#121212;
-    overflow-x:hidden;
-    color: #fff;
-}
-
 .confirmation-condition-notice{
     font-size: 12px;
 }
@@ -92,12 +91,11 @@ body{
 .confirmation-container{
     display:flex;
     flex-direction: column;
-    height: 100vh;
-    justify-content: space-evenly;
-    margin: auto;
-    max-width: 400px;
     text-align: center;
-    width: 80%;
+}
+
+.confirmation-container > * {
+    margin: 20px 0px;
 }
 
 .copyright-container{
@@ -113,30 +111,38 @@ body{
     margin: 20px;
 }
 
-.email {
-    background: #202020;
+.email-body {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    margin: 40px auto;
-    width: 70vw;
 }
 
-.email footer {
+.email-body > * {
+    margin: 20px 0px;
+}
+
+.email-container {
+    background: #202020;
+}
+
+.email-footer {
     background: #14141a;
+    padding: 10px;
     text-align: center;
+    width: 100%;
 }
 
-.email footer .auto-mail-warning {
+.email-footer > .auto-mail-warning {
     font-size: 10px;
     font-style:italic;
     margin: 20px;
 }
 
-.email .greeting {
+.email-container .greeting {
     margin: 20px;
 }
 
-.email .header {
+.email-container > header {
     align-items: baseline;
     border-bottom: 5px solid #1a1a1a;
     display: flex;
@@ -145,11 +151,11 @@ body{
     padding: 20px;
 }
 
-.email p{
+.email-container p{
     margin: 10px auto;
 }
 
-.email .qr-code {
+.email-container .qr-code {
     margin:auto;
     text-align:center;
     width: 80%;
@@ -158,7 +164,8 @@ body{
 .error{
     color:red;
     display: block;
-    padding: 20px;
+    margin: 0px;
+    padding: 10px;
     text-transform:none;
 }
 
@@ -168,7 +175,7 @@ body{
 }
 
 .folding-container .fld-chk {
-    display: none;
+    opacity: 0;
 }
 
 .folding-container 
@@ -186,17 +193,17 @@ label i{
 }
 
 .folding-container 
-header{
+.fld-header{
     cursor:pointer;
     user-select: none;
 }
 
 .folding-container 
-header:hover{
+.fld-header:hover{
     color:#4bf;
 }
 .folding-container
-header i{
+.fld-header i{
     float: left;
     margin: 10px;
 }
@@ -208,6 +215,7 @@ header i{
 h1{
     color: #fff;
     padding: 20px;
+    text-align: center;
 }
 
 .hidden{
@@ -215,11 +223,10 @@ h1{
 }
 
 main{
-    align-items: center;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 90vh;
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
 }
 
 p{
@@ -230,16 +237,38 @@ p{
     max-width: 80ch; 
 }
 
+.page-container{
+    align-items: center;
+    background: #121212;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.page-footer {
+    width: 100%;
+}
+
+.page-inner-track {
+    margin: auto;
+    min-height: 100%;
+    max-width: 90ch;
+    padding: 20px 0px;
+}
+
 .privacy-container{
-    background: #202020;
-    height: 80vh;
-    overflow-x:scroll;
-    width: 80%;
     padding: 20px;
 }
 
 .privacy-container h1{
-    text-align: center;
+    border-bottom: 1px solid #4bf;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    margin: 20px auto;
+    text-transform: uppercase;
+    width: fit-content;
 }
 
 .privacy-container ul{
@@ -304,34 +333,29 @@ table td {
 
 
 .trade-btn {
-    width: 270px;
+    width: fit-content;
     margin: auto;
 }
 
-.trade-container{
-    align-items: center;
-    background: #202020;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: auto;
-    padding: 30px 60px;
-    width:70%;
+.trade-container > form > *{
+    margin: 10px auto;
 }
 
-.trade-container p, .trade-total{
-    margin: 20px;
+.trade-container > p{
     text-align: center;
+}
+
+.trade-list > .trade-container {
+    margin: 40px auto;
 }
 
 .trade-table{
-    background:#202020;
-    color: #ddd;
+    background: #202020;
+    margin: auto;
     padding: 10px;
     text-align: center;
     text-transform: none;
-    width: 100%;
+    
 }
 
 .trade-table tbody{
@@ -387,6 +411,37 @@ table td {
     background: #333;
 }
 
+.user-login-container {
+    background: #202020;
+    padding: 40px;
+}
+
+.user-login{
+    display: flex;
+    flex-direction: column;
+}
+
+.user-login > div {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0px;
+    
+}
+
+.user-login > div input {
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.user-login .input-label{
+    padding-bottom: 10px;
+}
+
+.user-login > .login-btn{
+    margin: 10px 0px;
+}
+
 .user-sec{
 	color: #fff;
 }
@@ -416,6 +471,10 @@ table td {
     .privacy-container ul {
         margin-left: 20px;
     }
+    
+    .page-inner-track{
+        width: 100%;
+    }
 
     .email,
     .privacy-container,
@@ -423,5 +482,7 @@ table td {
         padding: 5px 10px;
         width: 100%;
     }
-    
+    table .verbose{
+        display: none;
+    }
 }

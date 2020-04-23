@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="eng"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+
+    <comp:root-head title="About">
+        <h:outputStylesheet library="css" name="about.css" />
+    </comp:root-head>
+    
+    <h:body>
+        <comp:page-container>
+            <div class="about-container">
+                <div class="general-container">
+                    <header>
+                        <h1>About Us</h1>
+                    </header>
+
+                    <p>
+                        Fizzit.com sets its vision as the UK's easiest online trader 
+                        of Books, CDs and DVDs. Decluttering some space and making some quick money 
+                        has never been easier! 
+                    </p>
+
+                    <p>
+                        Getting started is as easy as entering a barcode or ISBN number, then 
+                        check the price and once you have enough to qualify for our <b>FREE</b> 
+                        delivery then trade. 
+                        Sending us your stuff is as simple as putting it in any cardboard box
+                        and taking it to the local Post Office - no printing labels, no 
+                        calling someone up for collection (hooray)!
+                    </p>
+                </div>
+
+
+                <div class="testimonial-section">
+                    <div class="inner-width">
+                        <h2>Our Team</h2>
+
+                        <div class="testimonial-profiles">
+                            <comp:testimonial-profile image="images/team-max.jpg" 
+                                                      name="Max Cripps" 
+                                                      phrase="I'll just take a quick look!" 
+                                                      role="Lead Programmer" 
+                                                      testId="1" 
+                                                      active="true">
+                                <p>
+                                    Max spends most of his free time dipping his toes in different projects as 
+                                    well as obtaining new knowledge and practice coding skills. 
+                                    Due to his extensive expertise, he usually spends his time at work getting a 
+                                    firm grasp at all aspects of a project. 
+                                </p>
+                            </comp:testimonial-profile>
+
+                            <comp:testimonial-profile image="images/team-nat.jpg"
+                                                      name="Nathaniel Mccarthy"
+                                                      phrase="I'll fix that in a bit" 
+                                                      role="Lead Database Administrator" 
+                                                      testId="2">
+                                <p>
+                                    Nat spends most of his time at Uni, however he also spends a lot of time 
+                                    studying at home as well. He often visits his family back in London and his 
+                                    girlfriend in Czech republic. He also spends a lot of time working on his mobile 
+                                    application. 
+                                </p>              
+                            </comp:testimonial-profile>
+
+                            <comp:testimonial-profile image="images/team-olve.jpg" 
+                                                      name="Olve Vittersø" 
+                                                      phrase="Just put an o at the end, you don’t have 
+                                                      that letter for my last name"
+                                                      role="Team Leader"
+                                                      testId="3">
+                                <p>
+                                    Olve spends most of his time on uni-related topics and spending time 
+                                    with his friends. He is quick to understand issues to the related topics, 
+                                    and can quickly find fixes or alternate solutions. Olve is slow to start tasks, 
+                                    however, he tends to finish them in one go when he does start. 
+                                </p>                      
+                            </comp:testimonial-profile>
+
+                            <comp:testimonial-profile image="images/team-alex.jpg" 
+                                                      name="Alex Wishart" 
+                                                      phrase="Please don’t put me on UI" 
+                                                      role="Lead Programmer" 
+                                                      testId="4">
+                                <p>
+                                    Alex spends most of their time on uni-related topics and also works part-time. 
+                                    They are quick to understand matters and topics, and can quickly become proficient 
+                                    in most topics as needed. Alex also quickly starts on all tasks they are asked to do, 
+                                    so they can finish it in a timely manner. 
+                                </p>
+
+                            </comp:testimonial-profile>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+            <script type="text/javascript">
+                
+                function focus(e){
+                    var id = e.dataset.testiGroup;
+                    document.querySelectorAll(`.testimonial-pic img, .testimonial`)
+                            .forEach(function(i){
+                                (i.dataset.testiGroup === id) ? 
+                                i.classList.add(`active`) :
+                                i.classList.remove(`active`); 
+                    }); 
+                }
+                
+                document.querySelectorAll(`.testimonial-section img, .testimonial`)
+                        .forEach(i => i.addEventListener("click", function(){focus(i);}));
+                
+                
+            </script>
+            
+        </comp:page-container>    
+    </h:body>
+</html>
