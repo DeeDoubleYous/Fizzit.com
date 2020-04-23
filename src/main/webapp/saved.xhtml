@@ -46,9 +46,9 @@
 						#{item.getFormattedPrice()}
 					</h:column>
 					<h:column>
-						<h:commandButton id = "move-to-trade" action = "#{saver.moveToTradeList(customer, item, localTradeList)}" value = "Trade Item">
+						<h:commandLink id = "move-to-trade" action = "#{saver.moveToTradeList(customer, item, localTradeList)}" value = "Trade Item" styleClass = "moveToTrade">
 							<f:ajax execute="@form" resetValues="true" render="@form"/>
-						</h:commandButton>
+						</h:commandLink>
 					</h:column>
 					<h:column>
 						<h:commandLink id = "remove-saved" action = "#{saver.removeItem(customer, item)}">
