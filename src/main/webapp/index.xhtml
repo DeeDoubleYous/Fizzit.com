@@ -57,7 +57,7 @@
                              value="#{localTradeList.items}" 
                              var="item"
                              styleClass="trade-table #{localTradeList.items.isEmpty()? 'hidden':''}">
-                        <h:column>
+                        <h:column headerClass="verbose" class="verbose">
                             <f:facet name="header">Barcode</f:facet>
                             #{item.barcode}
                         </h:column>

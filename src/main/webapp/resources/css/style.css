@@ -351,9 +351,11 @@ table td {
 
 .trade-table{
     background: #202020;
+    margin: auto;
     padding: 10px;
     text-align: center;
     text-transform: none;
+    
 }
 
 .trade-table tbody{
@@ -479,6 +481,10 @@ table td {
     .trade-container{
         padding: 5px 10px;
         width: 100%;
+    }
+    
+    table .verbose{
+        display: none;
     }
     
 }
