@@ -23,9 +23,12 @@
     </h:head>
 	<h:body>
 		<comp:menu/>
+		
+		<h1>Your saved Items</h1>
+		
 		<h:panelGroup class="trade-container">
 			<h:form id = "save-list">
-				<h:dataTable value = "#{saveRepository.getSaved(customer)}" var = "item">
+				<h:dataTable value = "#{saveRepository.getSaved(customer)}" var = "item" styleClass = "trade-table">
 					<h:column>
 						<f:facet name = "header">Barcode</f:facet>
 						#{item.productBarcode}
@@ -41,6 +44,11 @@
 					<h:column>
 						<f:facet name = "header">Price</f:facet>
 						#{item.getFormattedPrice()}
+					</h:column>
+					<h:column>
+						<h:commandButton id = "move-to-trade" action = "#{saver.moveToTradeList(customer, item, localTradeList)}" value = "Trade Item">
+							<f:ajax execute="@form" resetValues="true" render="@form"/>
+						</h:commandButton>
 					</h:column>
 					<h:column>
 						<h:commandLink id = "remove-saved" action = "#{saver.removeItem(customer, item)}">
