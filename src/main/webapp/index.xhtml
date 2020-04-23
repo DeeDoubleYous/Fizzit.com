@@ -75,7 +75,7 @@
                             <h:commandLink
                                     id="deleteItem"
                                     action="#{localTradeList.deleteItem(item)}">
-                                <f:ajax execute="@form" resetValues="true" render="@form trade-list"/>
+                                <f:ajax execute="@form" resetValues="true" render="@form"/>
                                 <i class="far fa-trash-alt"></i>
                             </h:commandLink>
                         </h:column>
@@ -83,7 +83,7 @@
 							<h:commandLink
 								id="saveItem"
 								action="#{saver.saveItem(customer,item, localTradeList)}">
-								<f:ajax execute="@form" resetValues="true" render="@form trade-list"/>
+								<f:ajax execute="@form" resetValues="true" render="@form"/>
 								<i class="far fa-save"></i>
 							</h:commandLink>
 						</h:column>

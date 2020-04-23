@@ -5,6 +5,7 @@ import bton.ci536.fizzit.trade.LocalTradeList;
 import bton.ci536.fizzit.trade.TradeItem;
 import java.io.IOException;
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
