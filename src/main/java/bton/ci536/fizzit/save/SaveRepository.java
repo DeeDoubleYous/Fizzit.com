@@ -28,9 +28,6 @@ public class SaveRepository {
 	
 	private List<SavedProduct> saved;
 	
-	public SaveRepository() {
-	}
-	
 	public void getByCustomer(Customer customer) {
 		getByCustomerId(customer.getCustomerId());
 	}
