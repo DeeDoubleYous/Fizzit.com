@@ -1,6 +1,7 @@
 package bton.ci536.fizzit.save;
 
 import bton.ci536.fizzit.database.Customer;
+import bton.ci536.fizzit.trade.TradeItem;
 
 import java.io.Serializable;
 import javax.inject.Named;
@@ -115,7 +116,17 @@ public class SavedProduct implements Serializable{
 		this.productQuantity = quantity;
 	}
 	
-	 public String getFormattedPrice() {
+	public String getFormattedPrice() {
 	        return String.format("£%.2f", productPrice * productQuantity);
-	    }
+	}
+	
+	public TradeItem toTradeItem() {
+        TradeItem item = new TradeItem();
+        item.setBarcode(productBarcode);
+        item.setItemType(productType);
+        item.setItemAmount(productPrice);
+        item.setItemName(productName);
+        item.setItemQuantity(productQuantity);
+        return item;
+    }
 }

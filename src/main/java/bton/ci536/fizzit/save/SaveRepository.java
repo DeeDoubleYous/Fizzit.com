@@ -21,10 +21,9 @@ public class SaveRepository {
 	@Resource
 	UserTransaction utx;
 	
-	private Map<String, SavedProduct> saved;
+	private List<SavedProduct> saved;
 	
 	public SaveRepository() {
-		this.saved = new HashMap<>();
 	}
 	
 	public void getByCustomer(Customer customer) {
@@ -32,15 +31,11 @@ public class SaveRepository {
 	}
 	
 	public void getByCustomerId(String customerId){
-		List<SavedProduct> rs = em.createNamedQuery("custSavedList", SavedProduct.class).setParameter("custId", customerId).getResultList();
-		saved.clear();
-		for(SavedProduct p:rs) {
-			saved.put(p.getProductBarcode(), p);
-		}
+		this.saved = em.createNamedQuery("custSavedList", SavedProduct.class).setParameter("custId", customerId).getResultList();
 	}
 	
 	public Collection<SavedProduct> getSaved(Customer customer) {
 		getByCustomerId(customer.getCustomerId());
-		return saved.values();
+		return saved;
 	}
 }

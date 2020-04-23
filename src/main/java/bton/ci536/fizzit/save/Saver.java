@@ -80,4 +80,9 @@ public class Saver {
 		
 	}
 	
+	public void moveToTradeList(Customer customer, SavedProduct item, LocalTradeList tradeList) {
+		tradeList.addItem(item.toTradeItem());
+		removeItem(customer, item);
+	}
+	
 }
