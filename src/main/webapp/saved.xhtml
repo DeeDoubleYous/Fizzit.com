@@ -21,43 +21,42 @@
         <title>#{customer.fname} Saved | Fizzit.com</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-	<h:body>
-		<comp:menu/>
-		
-		<h1>Your saved Items</h1>
-		
-		<h:panelGroup class="trade-container">
-			<h:form id = "save-list">
-				<h:dataTable value = "#{saveRepository.getSaved(customer)}" var = "item" styleClass = "trade-table">
-					<h:column>
-						<f:facet name = "header">Barcode</f:facet>
-						#{item.productBarcode}
-					</h:column>
-					<h:column>
-						<f:facet name = "header">ProductName</f:facet>
-						#{item.productName}
-					</h:column>
-					<h:column>
-						<f:facet name = "header">Quantity</f:facet>
-						#{item.productQuantity}
-					</h:column>
-					<h:column>
-						<f:facet name = "header">Price</f:facet>
-						#{item.getFormattedPrice()}
-					</h:column>
-					<h:column>
-						<h:commandLink id = "move-to-trade" action = "#{saver.moveToTradeList(customer, item, localTradeList)}" value = "Trade Item" styleClass = "moveToTrade">
-							<f:ajax execute="@form" resetValues="true" render="@form"/>
-						</h:commandLink>
-					</h:column>
-					<h:column>
-						<h:commandLink id = "remove-saved" action = "#{saver.removeItem(customer, item)}">
-							<f:ajax execute="@form" resetValues="true" render="@form"/>
-							<i class="far fa-trash-alt"></i>
-						</h:commandLink>
-					</h:column>
-				</h:dataTable>
-			</h:form>
-		</h:panelGroup>
+	<h:body>	
+		<comp:page-container>
+			<h:panelGroup class="trade-container">
+				<h1>Your saved Items</h1>
+				<h:form id = "save-list">
+					<h:dataTable value = "#{saveRepository.getSaved(customer)}" var = "item" styleClass = "trade-table">
+						<h:column>
+							<f:facet name = "header">Barcode</f:facet>
+							#{item.productBarcode}
+						</h:column>
+						<h:column>
+							<f:facet name = "header">ProductName</f:facet>
+							#{item.productName}
+						</h:column>
+						<h:column>
+							<f:facet name = "header">Quantity</f:facet>
+							#{item.productQuantity}
+						</h:column>
+						<h:column>
+							<f:facet name = "header">Price</f:facet>
+							#{item.getFormattedPrice()}
+						</h:column>
+						<h:column>
+							<h:commandLink id = "move-to-trade" action = "#{saver.moveToTradeList(customer, item, localTradeList)}" value = "Trade Item" styleClass = "moveToTrade">
+								<f:ajax execute="@form" resetValues="true" render="@form"/>
+							</h:commandLink>
+						</h:column>
+						<h:column>
+							<h:commandLink id = "remove-saved" action = "#{saver.removeItem(customer, item)}">
+								<f:ajax execute="@form" resetValues="true" render="@form"/>
+								<i class="far fa-trash-alt"></i>
+							</h:commandLink>
+						</h:column>
+					</h:dataTable>
+				</h:form>
+			</h:panelGroup>
+		</comp:page-container>
 	</h:body>
 </html>
