@@ -43,14 +43,10 @@
 						#{item.getFormattedPrice()}
 					</h:column>
 					<h:column>
-						<h:commandButton id = "remove-saved" action = "#{saver.removeItem(customer, item)}" value = "remove 1">
+						<h:commandLink id = "remove-saved" action = "#{saver.removeItem(customer, item)}">
 							<f:ajax execute="@form" resetValues="true" render="@form"/>
-						</h:commandButton>
-					</h:column>
-					<h:column>
-						<h:commandButton id = "trade-saved" action = "#{saver.moveToTradeList(customer, item, loacalTradeList)}" value = "move to trade list">
-							<f:ajax execute="@form" resetValues="true" render="@form"/>
-						</h:commandButton>
+							<i class="far fa-trash-alt"></i>
+						</h:commandLink>
 					</h:column>
 				</h:dataTable>
 				<h:message id = "saved-message" for = "save-form" class = "error"/>

@@ -4,8 +4,8 @@ import bton.ci536.fizzit.database.Customer;
 import bton.ci536.fizzit.trade.LocalTradeList;
 import bton.ci536.fizzit.trade.TradeItem;
 import java.io.IOException;
-import java.util.Map;
 import javax.annotation.Resource;
+import javax.ejb.SessionContext;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -67,40 +67,17 @@ public class Saver {
 			}
 		}
 	}
-	
-	public void moveToTradeList(Customer customer, SavedProduct item, LocalTradeList tradeList) {
-		try {
-			TradeItem found = em.find(TradeItem.class, item.getProductBarcode());
-			found.setItemQuantity(item.getProductQuantity());
-			tradeList.addItem(found);
-		}catch(Exception e) {
-			
-		}
-	}
-	
+		
 	public void removeItem(Customer customer, SavedProduct item) {
-		if(item.getProductQuantity() > 1) {
-			try {
-				item.setProductQuantity(item.getProductQuantity() - 1);
-				ut.begin();
-				em.merge(item);
-				ut.commit();
-			}catch(Exception e) {
-				try {
-					ut.rollback();
-				}catch(Exception ex) {
-					ex.printStackTrace(System.err);
-				}
-				e.printStackTrace(System.err);
-			}
-		}else{
-			FacesContext.getCurrentInstance().addMessage("form:save-form", new FacesMessage("elsed"));
-			removeAllSaved(customer, item);
+		try {
+			ut.begin();
+			SavedProduct found = em.createNamedQuery("byCustAndBarcode", SavedProduct.class).setParameter("custId", customer.getCustomerId()).setParameter("prodBar", item.getProductBarcode()).getSingleResult();
+			em.remove(found);
+			ut.commit();
+		} catch (Exception e) {
+			e.printStackTrace(System.err);
 		}
-	}
-	
-	public void removeAllSaved(Customer customer, SavedProduct item) {
-		em.remove(item);
+		
 	}
 	
 }
