@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp">
+
+
+
+    <c:if test="#{customer.customerId == null}">
+        <script>
+            window.location.replace("/Fizzit.com/userlogin.xhtml");
+        </script>
+    </c:if>
+    <c:if test="#{param.trade == null}">
+        <script>
+            window.location.replace("/Fizzit.com/");
+        </script>
+    </c:if>
+
+    <comp:root-head title="#{customer.fname} Trade ##{param.trade}" />
+    <body>
+        <div class="page-container">
+            <div class="page-inner-track">
+                <div class="email-container">
+
+                    <header class="header">
+                        <h1 class="logo">Fizzit.com</h1>
+                        <h3 class="summary">Trade Summary</h3>
+                    </header>
+
+                    <article class="email-body">
+                        <div class="greeting">
+                            <p>
+                                Hello #{customer.fname},<br/><br/>
+                                We've recieved your trade request and have accepted the 
+                                trades made. Please find below a list of items and the 
+                                prices you agreed to trade them for.
+                            </p>
+                        </div>
+                        <div class="trade">
+                            <comp:trade trade="#{tradeRepository.getByCustomerAndTradeId(customer, param.trade)}"/>
+                        </div>
+                        <div class="qr-code">
+                            <h4>Delivery QR Code</h4>
+                            <h:graphicImage library="images" name="qr-code.png"/>
+                            <p>
+                                If you are happy with the details then please package your 
+                                items into a suitable box and take them to your local 
+                                Post Office and let them scan the QR code above.
+                            </p>
+                        </div>
+                    </article>
+
+                    <footer class="email-footer">
+                        <p>
+                            Yours sincerely,
+                        </p>
+                        <p>
+                            <b>The Fizzit Team.</b>
+                        </p>
+
+                        <div class="auto-mail-warning">
+                            <p>
+                                This email has been generated automatically from your 
+                                trade, it can't receive replies.
+                            </p>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

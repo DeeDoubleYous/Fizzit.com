@@ -1,46 +1,52 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="eng" 
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:cc="http://xmlns.jcp.org/jsf/composite"
       xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp">
       
-    <h:head>
-	<meta charset="utf-8"/>
-	<h:outputStylesheet name="css/style.css"/>
-	<title>Login | Fizzit.com</title>
-    </h:head>
+    <comp:root-head title="Login"/>
     
     <h:body>
         
-        <comp:menu hidden="true"/>
+        <comp:page-container hideUser="true">
         
-        <h1>Login to your account</h1>
-		
-	<h:panelGroup class="user-login" layout="block">
-            <h:form id="form" class="user-login">
-		<h:inputText id = "email"
-                             pt:placeholder ="Enter your email"
-                             class="email-input"
-                             pt:title="Enter your email"
-                             required="true"
-                             value="#{loginControl.email}"/>
-		<h:inputSecret id = "password"
-                             class="password-input"
-                             pt:title="Password"
-                             required="true"
-                             value="#{loginControl.password}"/>
-		<h:commandButton id="login-butt"
-                                 class="login-confirm-button active"
-                                 value ="login"
-                                 action="#{loginControl.submit(customer)}">
-                    <f:ajax execute="@form" resetValues="true" render="@form"/>
-                </h:commandButton>
-			<h:message id="login-error" class="error" for="login-butt"/>
-            </h:form>
-        </h:panelGroup>
-		
+            <div class="user-login-container">
+                <header>
+                    <h1>Login to your account</h1>
+                </header>
+
+                <h:panelGroup class="user-login" layout="block">
+                    <h:form id="form" class="user-login">
+                        <div class="user-email-container">
+                            <label for="email" class="input-label">Email</label>
+                            <h:inputText id = "email"
+                                         class="email-input"
+                                         pt:title="Enter your email"
+                                         required="true"
+                                         value="#{loginControl.email}"/>
+                        </div>
+                        <div class="user-password-container">
+                            <label for="password" class="input-label">Password</label>
+                            <h:inputSecret id = "password"
+                                         class="password-input"
+                                         required="true"
+                                         value="#{loginControl.password}"/>
+                        </div>
+                        <h:commandButton id="login-butt"
+                                         class="login-btn btn active"
+                                         value ="login"
+                                         action="#{loginControl.submit(customer)}">
+                            <f:ajax execute="@form" resetValues="true" render="@form"/>
+                        </h:commandButton>
+                        <h:message id="login-error" class="error" for="user-login"/>
+                    </h:form>
+                </h:panelGroup>
+            </div>
+        
+        </comp:page-container>
     </h:body>
       
 </html>

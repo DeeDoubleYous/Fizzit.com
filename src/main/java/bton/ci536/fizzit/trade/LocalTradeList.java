@@ -108,6 +108,9 @@ public class LocalTradeList implements Serializable{
             
         }
         
+        //regardless of outcome lets clear the barcode
+        barcode = "";
+        
     }
     
     

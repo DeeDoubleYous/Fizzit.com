@@ -50,10 +50,17 @@ public class Trader {
                 }
                 ex.printStackTrace(System.err);
             }
-            
+            //clear the current trade information 
             localTradeList.clear();
+            
+            try { //redirect to confirmation page
+                FacesContext.getCurrentInstance().getExternalContext()
+                        .redirect("./trade/confirmation.xhtml?id=" + trade.getTradeId());
+            } catch(IOException ex) {
+                ex.printStackTrace(System.err);
+            }
+            
         }
         
     }
-    
 }

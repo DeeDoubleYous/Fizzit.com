@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp">
+
+    <cc:interface>
+        <cc:attribute name="hideUser" default="false"/>
+    </cc:interface>
+
+    <cc:implementation>
+        
+        <article class="page-container">
+            <comp:menu hideUser="#{cc.attrs.hideUser}" />
+        
+        <main>
+            <div class="page-inner-track"> 
+                <cc:insertChildren/>
+            </div>
+        </main>
+        
+        <comp:footer />
+        
+        </article>
+        
+    </cc:implementation>
+
+
+</html>

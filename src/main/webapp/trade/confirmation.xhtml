@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp">
+    
+    
+    <c:if test="#{param.id == null}">
+        <script>
+            window.location.replace("/Fizzit.com/");
+        </script>
+    </c:if>
+    
+    <comp:root-head title="##{param.id} Trade Confirmation" />
+    
+    <body>
+        
+        <comp:page-container> 
+        
+        
+        <div class="confirmation-container">
+            <header>
+                <h1>Thank you!<br/> You will receive an email shortly!</h1>
+            </header>
+            
+            <p>
+                Your trade has been accepted! We will email you to tell you what
+                to do next.
+            </p>
+            <p class='confirmation-condition-notice'>
+                <i>
+                    The trade has been accepted at this time based on the information
+                    you have given us and on the condition that the items being traded
+                    still function as intended. 
+                    Fizzit maintains the rights to refuse the trade and return your 
+                    items if they don't meet this criteria. 
+                </i>
+            </p>
+            
+            <a class='btn' href='/Fizzit.com/'>Ok - Take me home!</a>
+        </div>
+        
+        
+        <div class='dev-mock'>
+            <a href='/Fizzit.com/trade/email.jsf?trade=#{param.id}'>Email Confirmation</a>
+        </div>
+            
+        </comp:page-container>
+        
+    </body>
+</html>

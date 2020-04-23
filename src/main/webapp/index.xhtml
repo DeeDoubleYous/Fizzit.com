@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="eng"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp">
     
-    <h:head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"/>
-        <h:outputStylesheet name="css/style.css" />
-        <title>Trading Media | Fizzit.com</title>
-    </h:head>
+    <comp:root-head title="Trading Media"/>
     <h:body>
-        <comp:menu/>
+        <comp:page-container>
         
-        <main>
             <h:panelGroup class="trade-container" layout="block">
+                
+                <header>
+                    <h1>Sell CDs, DVDs, &amp; Books</h1>
+                </header>
+                
                 <p>
-                    Start selling us your DVDs and CDs enter the barcode and click 'Add'!
+                    To start enter the barcode without spaces or dashes for your CD or DVD then click add!
                 </p>
                 <h:form class="barcode-form" id="form">
                     <h:panelGroup class="barcode-widget">
@@ -27,7 +27,6 @@
                                      class="barcode-input"
                                      maxlength="13"
                                      pt:title="Enter a barcode"
-                                     required="true"
                                      value="#{localTradeList.barcode}">
                             <f:validator binding="#{barcodeValidator}"/>
                             <f:validator binding="#{tradeLimitValidator}"/>
@@ -40,22 +39,25 @@
                             <f:ajax execute="@form" resetValues="true" render="@form trade-list" />
                         </h:commandButton>
                     </h:panelGroup>
-                    <h:message id="trade-err" class="error" for="trade-btn"/>
-                    <h:message id="errmsg" class="error" for="bcode"/>
-                    <h:outputText id ="totalPrice" class="trade-total" value = "#{localTradeList.totalValue}">
-                        <f:convertNumber type="currency"/>
-                    </h:outputText>
+                    <span>Total Value: 
+                        <h:outputText id ="totalPrice" class="trade-total" value="#{localTradeList.totalValue}">
+                            <f:convertNumber type="currency"/>
+                        </h:outputText>
+                    </span>
                     <h:commandButton class="trade-btn btn" 
                                      value="Confirm Trade"
                                      disabled="#{localTradeList.totalValue lt 1.00}"
                                      action="#{trader.trade(customer, localTradeList)}">
+                        <f:ajax resetValues="true" render="@form"/> 
                     </h:commandButton>
+                    <h:message id="trade-err" class="error" for="trade-btn"/>
+                    <h:message id="errmsg" class="error" for="bcode"/>
                     <!-- dataTable instead of ui:repeat for clear and easy table -->
                     <h:dataTable id="trade-list" 
                              value="#{localTradeList.items}" 
                              var="item"
                              styleClass="trade-table #{localTradeList.items.isEmpty()? 'hidden':''}">
-                        <h:column>
+                        <h:column headerClass="verbose" class="verbose">
                             <f:facet name="header">Barcode</f:facet>
                             #{item.barcode}
                         </h:column>
@@ -64,7 +66,7 @@
                             #{item.itemName}
                         </h:column>
                         <h:column>
-                            <f:facet name="header">Quantity</f:facet>
+                            <f:facet name="header">Qty</f:facet>
                             #{item.itemQuantity}
                         </h:column>
                         <h:column>
@@ -75,22 +77,24 @@
                             <h:commandLink
                                     id="deleteItem"
                                     action="#{localTradeList.deleteItem(item)}">
-                                <f:ajax execute="@form" resetValues="true" render="@form"/>
+                                <f:ajax execute="@trade-list" resetValues="true" render="@form trade-list"/>
                                 <i class="far fa-trash-alt"></i>
                             </h:commandLink>
                         </h:column>
-						<h:column>
-							<h:commandLink
-								id="saveItem"
-								action="#{saver.saveItem(customer,item, localTradeList)}">
-								<f:ajax execute="@form" resetValues="true" render="@form"/>
-								<i class="far fa-save"></i>
-							</h:commandLink>
-						</h:column>
+						            <h:column>
+							               <h:commandLink
+								                    id="saveItem"
+								                    action="#{saver.saveItem(customer,item, localTradeList)}">
+								                  <f:ajax execute="@form" resetValues="true" render="@form"/>
+								                  <i class="far fa-save"></i>
+							                </h:commandLink>
+						            </h:column>
                     </h:dataTable>
                 </h:form>
             </h:panelGroup> 
-        </main>
+            
+        </comp:page-container>
+        
     </h:body>
 </html>
 

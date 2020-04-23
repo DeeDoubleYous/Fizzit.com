@@ -7,36 +7,37 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <cc:interface>
-        <cc:attribute name="hidden" default="false"/>
+        <cc:attribute name="hideUser" default="false"/>
     </cc:interface>
-    
+
     <cc:implementation>
-        
-        <header class="header">
+
+        <header class="top-row">
             <h1 class="logo"><a href="/Fizzit.com/">Fizzit.com</a></h1>
             <nav class="menu">
-            <c:if test="#{!cc.attrs.hidden}">
-                <c:if test="#{customer.customerId != null}">
-                    <div class="user-sec menu-item">
-                        #{customer.fname}
-                        <i class="far fa-user"></i>
-                    </div>
-                    <h:form class="user-menu">
-                        <a href="./trades.xhtml">Trades</a>
-						<a href="./saved.xhtml">Saved Items</a>
-                        <h:commandLink id="log-out"
-                        				class="log-out-btn"
-                        				value="Log out"
-                        				action="#{loginControl.logOut(customer)}"/>
-                    </h:form>
+                <c:if test="#{!cc.attrs.hideUser}">
+                    <c:if test="#{customer.customerId != null}">
+                        <div class="user-sec menu-item">
+                            #{customer.fname}
+                            <i class="far fa-user"></i>
+                        </div>
+                        <h:form class="user-menu">
+                            <a href="./trades.xhtml">Trades</a>
+                            <a href="./saved.xhtml">Saved Items</a>
+                            <h:commandLink id="log-out"
+                                           class="log-out-btn"
+                                           value="Log out"
+                                           action="#{loginControl.logOut(customer)}">
+                            </h:commandLink>
+                        </h:form>
+                    </c:if>
+                    <c:if test="#{customer.customerId == null}">
+                        <a class="sign-in btn menu-item" href="/Fizzit.com/userlogin.xhtml">Sign in</a>
+                    </c:if>
                 </c:if>
-                <c:if test="#{customer.customerId == null}">
-                    <a class="sign-in btn menu-item" href="/Fizzit.com/userlogin.xhtml">Sign in</a>
-                </c:if>
-            </c:if>
             </nav>
         </header>
     </cc:implementation>
-    
-    
+
+
 </html>

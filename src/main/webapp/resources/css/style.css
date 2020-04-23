@@ -39,21 +39,6 @@ a , a:visited > i{
     background: #484848 !important;
 }
 
-.barcode-input-btn{
-    background:#037bee;
-    border:none;
-    color:#fff;
-    cursor:pointer;
-    height:50px;
-    outline:none;
-    text-transform:uppercase;
-    transition: 1s linear;
-}
-
-.barcode-input-btn.active:hover{
-    opacity: .7;
-}
-
 .barcode-widget{
     align-items: center;
     display: flex;
@@ -61,15 +46,23 @@ a , a:visited > i{
     justify-content: center;
 }
 
+body, html {
+    height: 100%;
+    /*Resolves horizontal scrollbar caused by ::webkit styling*/
+    overflow-x: hidden;
+}
+
 .btn{
-    background: #037bee;
+    background: #4bf;
     border: none;
     color: #fff;
     cursor: pointer;
     font-weight: 700;
     height: 50px;
+    line-height: 30px;
     outline: none;
     padding: 10px;
+    text-align: center;
     text-transform: uppercase;
     text-decoration: none;
     transition: color 1s linear;
@@ -81,63 +74,148 @@ a , a:visited > i{
 }
 
 .btn:disabled:hover{
+    background: #444;
+    color: #666;
     cursor:context-menu;
     opacity:1;
 }
 
 .btn:hover{
-    opacity: .7;
+    background: #138bff;
 }
 
-body{
+.confirmation-condition-notice{
+    font-size: 12px;
+}
+
+.confirmation-container{
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.confirmation-container > * {
+    margin: 20px 0px;
+}
+
+.copyright-container{
     align-items:center;
-    background:#121212;
+    background: #202020;
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    height: 10vh;
+}
+
+.copyright-container *{
+    margin: 20px;
+}
+
+.email-body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.email-body > * {
+    margin: 20px 0px;
+}
+
+.email-container {
+    background: #202020;
+}
+
+.email-footer {
+    background: #14141a;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.email-footer > .auto-mail-warning {
+    font-size: 10px;
+    font-style:italic;
+    margin: 20px;
+}
+
+.email-container .greeting {
+    margin: 20px;
+}
+
+.email-container > header {
+    align-items: baseline;
+    border-bottom: 5px solid #1a1a1a;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.email-container p{
+    margin: 10px auto;
+}
+
+.email-container .qr-code {
+    margin:auto;
+    text-align:center;
+    width: 80%;
 }
 
 .error{
     color:red;
     display: block;
-    padding: 20px;
+    margin: 0px;
+    padding: 10px;
     text-transform:none;
+}
+
+.folding-container .content {
+    height: 0;
+    overflow-x: hidden;
+}
+
+.folding-container .fld-chk {
+    opacity: 0;
+}
+
+.folding-container 
+.fld-chk:checked ~
+.content {
+    height: auto;
+    overflow-x:auto;
+}
+
+
+.folding-container 
+.fld-chk:checked ~ 
+label i{
+    transform: rotate(90deg)
+}
+
+.folding-container 
+.fld-header{
+    cursor:pointer;
+    user-select: none;
+}
+
+.folding-container 
+.fld-header:hover{
+    color:#4bf;
+}
+.folding-container
+.fld-header i{
+    float: left;
+    margin: 10px;
+}
+.folding-container h2,
+.folding-container h3{
+    margin: 20px 0px;
 }
 
 h1{
     color: #fff;
     padding: 20px;
-}
-
-.header{
-    background: #202020;
-    width: 100vw;
-    height: 10vh;
-}
-
-.header .logo{
-    cursor: context-menu;
-    float: left;
-    margin-left: 20px;
-    line-height: 10vh;
-    padding: 0;
-}
-
-.header .logo a{
-    text-decoration: none;
-}
-
-.header .menu{
-    width: 100px;
-    align-items: center;
-    float: right;
-    line-height: 10vh;
-    margin-right: 20px;
-}
-
-.header .menu:hover .user-menu a{
-    display: block;
-}
-
-.header .menu .menu-item{
-    margin: 0px 5px 0 5px;
+    text-align: center;
 }
 
 .hidden{
@@ -145,36 +223,139 @@ h1{
 }
 
 main{
-    align-items: center;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 90vh;
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
 }
 
-.trade-container{
+p{
+    /*
+        Text blocks shouldn't exceed 80 character length
+        ch unit approx's the limit for us.
+    */
+    max-width: 80ch; 
+}
+
+.page-container{
     align-items: center;
-    background: #202020;
+    background: #121212;
     color: #fff;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 30px 60px;
-    width:600px;
+    min-height: 100%;
 }
 
-.trade-container p, .trade-total{
-    margin: 20px;
+.page-footer {
+    width: 100%;
+}
+
+.page-inner-track {
+    margin: auto;
+    min-height: 100%;
+    max-width: 90ch;
+    padding: 20px 0px;
+}
+
+.privacy-container{
+    padding: 20px;
+}
+
+.privacy-container h1{
+    border-bottom: 1px solid #4bf;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    margin: 20px auto;
+    text-transform: uppercase;
+    width: fit-content;
+}
+
+.privacy-container ul{
+    list-style-type:square;
+    margin-left: 40px;
+}
+
+.privacy-container p{
+    margin: 20px 0px;
+}
+
+.privacy-container 
+table {
+    border-collapse: collapse;
+    width: 90%;
+    margin: auto;
+}
+
+.privacy-container 
+table td {
+    padding: 15px;
+}
+
+.privacy-container table, 
+.privacy-container table td{
+    border: 1px solid #fff;
+}
+
+.top-row{
+    background: #202020;
+    width: 100vw;
+    height: 10vh;
+}
+
+.top-row .logo{
+    cursor: context-menu;
+    float: left;
+    margin-left: 20px;
+    line-height: 10vh;
+    padding: 0;
+}
+
+.top-row .logo a{
+    text-decoration: none;
+}
+
+.top-row .menu{
+    width: 100px;
+    align-items: center;
+    float: right;
+    line-height: 10vh;
+    margin-right: 20px;
+}
+
+.top-row .menu:hover .user-menu a{
+    display: block;
+}
+
+.top-row .menu .menu-item{
+    margin: 0px 5px 0 5px;
+}
+
+
+.trade-btn {
+    width: fit-content;
+    margin: auto;
+}
+
+.trade-container > form > *{
+    margin: 10px auto;
+}
+
+.trade-container > p{
     text-align: center;
+}
+
+.trade-list > .trade-container {
+    margin: 40px auto;
 }
 
 .trade-table{
-    background:#202020;
-    color: #ddd;
+    background: #202020;
+    margin: auto;
     padding: 10px;
     text-align: center;
     text-transform: none;
-    width: 100%;
+    
 }
 
 .trade-table tbody{
@@ -185,13 +366,11 @@ main{
 .trade-table td{
     border-bottom: 0.5px solid #404040;
     padding: 10px;
-    width: 20%;
 }
 
 .trade-table th {
     height: 50px;
     padding: 10px;
-    width: 20%;
 }
 
 .user-menu{
@@ -201,16 +380,17 @@ main{
 }
 
 .user-menu a{
-    text-decoration: none;
-    color: #fff;
     background: #202020;
-    padding: 8px 2px;
+    color: #fff;
     display: none;
+    padding: 8px 2px;
+    text-decoration: none;
     transition: 0.3s all;
 }
 
 .user-menu a:hover{
-    opacity: 0.7;
+    color: #4bf;
+    opacity: 0.8;
 }
 
 
@@ -231,10 +411,83 @@ main{
     background: #333;
 }
 
+.user-login-container {
+    background: #202020;
+    padding: 40px;
+}
+
+.user-login{
+    display: flex;
+    flex-direction: column;
+}
+
+.user-login > div {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0px;
+    
+}
+
+.user-login > div input {
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.user-login .input-label{
+    padding-bottom: 10px;
+}
+
+.user-login > .login-btn{
+    margin: 10px 0px;
+}
+
 .user-sec{
 	color: #fff;
+}
+
+@media screen and (max-width: 750px){
+    .trade-table{
+        padding: 5px;
+    }
+
+    .trade-table td, .trade-table th {
+        padding: 5px;
+    }
+}
+
+
+@media screen and (max-width: 600px){
+
+
+    .email .qr-code{
+        width: 100%;
+    }
+    
+    .privacy-container table td {
+        padding: 5px;
+    }
+
+    .privacy-container ul {
+        margin-left: 20px;
+    }
+    
+    .page-inner-track{
+        width: 100%;
+    }
+
+    .email,
+    .privacy-container,
+    .trade-container{
+        padding: 5px 10px;
+        width: 100%;
+    }
+    table .verbose{
+        display: none;
+    }
 }
 
 .moveToTrade{
 	text-decoration: none;
 }
+
