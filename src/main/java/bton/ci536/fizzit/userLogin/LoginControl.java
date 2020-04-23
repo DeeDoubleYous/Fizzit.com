@@ -44,36 +44,33 @@ public class LoginControl implements Serializable {
 
     public void submit(Customer customer) {
         
-        
-        Customer cust = em.createNamedQuery("userLogin", Customer.class)
+        try {
+        	Customer cust = em.createNamedQuery("userLogin", Customer.class)
                 .setParameter("cEmail", email)
                 .setParameter("cPass", password)
                 .getSingleResult();
-        
-        if (cust == null) {
-            email = null;
-            password = null;
-            FacesContext.getCurrentInstance()
-                    .addMessage("form:user-login", 
-                            new FacesMessage("Unfortunatly either the "
-                                    + "password or email was incorrect, "
-                                    + "please try again"));
-        } else {
-            //hack to update managed bean :(
-            customer.setCustomerId(cust.getCustomerId());
-            customer.setEmail(cust.getEmail());
-            customer.setFname(cust.getFname());
-            customer.setPassword(cust.getPassword());
-            customer.setSname(cust.getSname());
-            try {
+        		//hack to update managed bean :(
+        	customer.setCustomerId(cust.getCustomerId());
+        	customer.setEmail(cust.getEmail());
+        	customer.setFname(cust.getFname());
+        	customer.setPassword(cust.getPassword());
+        	customer.setSname(cust.getSname());
+        	try {
             FacesContext
                     .getCurrentInstance()
                     .getExternalContext()
                     .redirect("index.xhtml");
-            } catch(IOException ex)
-            {
-                ex.printStackTrace(System.err);
-            }
+        	}catch(IOException ex){
+        		ex.printStackTrace(System.err);
+        	}
+        }catch(Exception e) {
+        	email = null;
+    		password = null;
+            FacesContext.getCurrentInstance()
+                    .addMessage("form:login-butt", 
+                            new FacesMessage("Unfortunatly either the "
+                                    + "password or email was incorrect, "
+                                    + "please try again"));
         }
     }
     

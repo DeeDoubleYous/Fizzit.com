@@ -486,3 +486,8 @@ table td {
         display: none;
     }
 }
+
+.moveToTrade{
+	text-decoration: none;
+}
+

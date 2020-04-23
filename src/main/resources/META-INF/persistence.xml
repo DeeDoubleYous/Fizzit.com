@@ -6,6 +6,7 @@
       <class>bton.ci536.fizzit.trade.Trade</class>
       <class>bton.ci536.fizzit.trade.TradeItem</class>
       <class>bton.ci536.fizzit.trade.TradeStatus</class>
+      <class>bton.ci536.fizzit.save.SavedProduct</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://178.128.37.54:3306/mc1098_fizzit"/>
       <property name="javax.persistence.jdbc.user" value="mc1098_fizzit"/>

@@ -81,6 +81,14 @@
                                 <i class="far fa-trash-alt"></i>
                             </h:commandLink>
                         </h:column>
+						<h:column>
+							<h:commandLink
+						            id="saveItem"
+								    action="#{saver.saveItem(customer,item, localTradeList)}">
+								<f:ajax execute="@trade-list" resetValues="true" render="@form trade-list"/>
+								 <i class="far fa-save"></i>
+							</h:commandLink>
+						</h:column>
                     </h:dataTable>
                 </h:form>
             </h:panelGroup> 

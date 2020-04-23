@@ -10,7 +10,7 @@ import javax.persistence.*;
  * A type for storing the results of the product database look up. Implements
  * getters and setters for the item stored.
  *
- * @author Alex Wishart
+ * @author Alex Wishart | d.wishart1@uni.brighton.ac.uk
  */
 @Named
 @Entity()
