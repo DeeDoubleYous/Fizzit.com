@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="eng"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp">
 
-    <h:head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"/>
-        <h:outputStylesheet name="css/style.css" />
-        <title>Privacy | Fizzit.com</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </h:head>
-    <h:body>
-        <comp:menu />
 
-        <main>
+    <comp:root-head title="Privacy" />
+    
+    <h:body>
+        <comp:page-container>
             <div class="privacy-container">
-                <h1>Privacy Policy</h1>
+                <header>
+                    <h1>Privacy Policy</h1>
+                </header>
 
                 <p>
                     At Fizzit, we take your privacy and security very seriously. We want you to feel confident when using
@@ -34,13 +31,13 @@
                         <li>We take all appropriate steps to protect your data.</li>
                         <li>We will never sell your data to a third party</li>
                         <li>
-                            Whenever you have given us your consent to use your personal data (e.g. so we can send
-                            you special offers or news about our products and services that we think would be of
+                            Whenever you have given us your consent to use your personal data (e.g. so we can send 
+                            you special offers or news about our products and services that we think would be of 
                             interest to you), you can withdraw consent at any time.
                         </li>
                         <li>
-                            If we don’t need your data anymore, we will either anonymise it (e.g. retain your data to
-                            help us assess how people use us so that we can improve our services but make sure that
+                            If we don’t need your data anymore, we will either anonymise it (e.g. retain your data to 
+                            help us assess how people use us so that we can improve our services but make sure that 
                             you can no longer be identified from that information) or we will securely delete it.
                         </li>
                     </ul>
@@ -52,83 +49,109 @@
                 <comp:folding-container 
                     checkboxId="fld-2" 
                     title="How we collect and use your information">
-                    <h3>Your name and contact details</h3>
-                    <p>
-                        We collect your name and contact details when you create a Fizzit account and use them for the
-                        following purposes:
-                    </p>
-                    <ul>
-                        <li>Returning items sold which are refused by Fizzit.</li>
-                        <li>
-                            Sending important service-related messages by text, email, post and push notifications (you
-                            can opt out of any of these at any time in your account settings).
-                        </li>
-                        <li>
-                            Sending information about our latest offers, discounts, voucher codes, competitions and
-                            updates by text, email, post, social media and push notifications (again, you can opt out of
-                            any of these at any time in your account settings).
-                        </li>
-                        <li>
-                            Fraud prevention and detection.
-                        </li>
-                    </ul>
+                    <section>
+                        <header>
+                            <h3>Your name and contact details</h3>
+                        </header>
 
-                    <h3>Your payment information</h3>
-                    <p>
-                        At Fizzit we understand that saving your payment information in many places is concerning so at the
-                        present time Fizzit does not store your payment information but uses, with your consent, a trusted
-                        third-party service in order to pay you for items sold to Fizzit.
-                    </p>
+                        <p>
+                            We collect your name and contact details when you create a Fizzit account and use them for the following purposes:
+                        </p>
+                        <ul>
+                            <li>Returning items sold which are refused by Fizzit.</li>
+                            <li>
+                                Sending important service-related messages by text, email, post and push notifications (you
+                                can opt out of any of these at any time in your account settings).
+                            </li>
+                            <li>
+                                Sending information about our latest offers, discounts, voucher codes, competitions and
+                                updates by text, email, post, social media and push notifications (again, you can opt out of
+                                any of these at any time in your account settings).
+                            </li>
+                            <li>
+                                Fraud prevention and detection.
+                            </li>
+                        </ul>
 
-                    <h3>Your contact history with us</h3>
-                    <p>
-                        We may store and use any communications you have with us (i.e. when contacting our customer
-                        service team) for the following reasons:
-                    </p>
-                    <ul>
-                        <li>Provide customer service and support.</li>
-                        <li>Devise solutions to common customer problems.</li>
-                        <li>Train our customer service team.</li>
-                    </ul>
+                    </section>
 
-                    <h3>Your purchase history and saved items</h3>
-                    <p>
-                        In order to deliver the best possible service, we store information on your purchase history and
-                        saved items. This allows us to:
-                    </p>
-                    <ul>
-                        <li>
-                            Provide a personalised experience when using our website (including recommended
-                            products) using automated and computerised technology.
-                        </li>
-                        <li>Review, develop and improve the services we offer.</li>
-                        <li>Send marketing emails relevant to your interests.</li>
-                    </ul>
+                    <section>
+                        <header>
+                            <h3>Your payment information</h3>
+                        </header>
+                        <p>
+                            At Fizzit we understand that saving your payment information in many places is concerning so at the 
+                            present time Fizzit does not store your payment information but uses, with your consent, a trusted 
+                            third-party service in order to pay you for items sold to Fizzit.
+                        </p>
+                    </section>
 
-                    <h3>Information about your devices and how you use our services</h3>
-                    <p>
-                        When you visit our site or send an email to us, we will automatically collect information about the
-                        device you’re using (i.e. mobile, computer, tablet, etc) as well as your operating system, access
-                        times, browser information (including type, language and history), your location data, settings and
-                        other data required to deliver the services described in this policy.
-                    </p>
-                    <p>
-                        We use cookies and other technologies to collect this information and use it in the following ways:
-                    </p>
-                    <ul>
-                        <li>Provide you with a personalised browsing experience.</li>
-                        <li>Research and data analysis.</li>
-                        <li>Developing new services.</li>
-                    </ul>
-                    <p>
-                        We apply all the safeguards outlined in this policy when combining your personal information with
-                        your device information.
-                    </p>
-                    <p>
-                        In some instances, we may provide third parties with aggregated information and analytics in order
-                        to deliver and improve our service. This information will be anonymised so it cannot be used to
-                        identify you.
-                    </p>
+                    <section>
+                        <header>
+                            <h3>Your contact history with us</h3>
+                        </header>
+
+                        <p>
+                            We may store and use any communications you have with us (i.e. when contacting our customer
+                            service team) for the following reasons:
+                        </p>
+                        <ul>
+                            <li>Provide customer service and support.</li>
+                            <li>Devise solutions to common customer problems.</li>
+                            <li>Train our customer service team.</li>
+                        </ul>
+
+                    </section>
+
+                    <section>
+                        <header>
+                            <h3>Your purchase history and saved items</h3>
+                        </header>
+
+                        <p>
+                            In order to deliver the best possible service, we store information on your purchase history and
+                            saved items. This allows us to:
+                        </p>
+                        <ul>
+                            <li>
+                                Provide a personalised experience when using our website (including recommended
+                                products) using automated and computerised technology.
+                            </li>
+                            <li>Review, develop and improve the services we offer.</li>
+                            <li>Send marketing emails relevant to your interests.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <header>
+                            <h3>Information about your devices and how you use our services</h3>
+                        </header>
+
+                        <p>
+                            When you visit our site or send an email to us, we will automatically collect information about the
+                            device you’re using (i.e. mobile, computer, tablet, etc) as well as your operating system, access
+                            times, browser information (including type, language and history), your location data, settings and
+                            other data required to deliver the services described in this policy.
+                        </p>
+                        <p>
+                            We use cookies and other technologies to collect this information and use it in the following ways:
+                        </p>
+                        <ul>
+                            <li>Provide you with a personalised browsing experience.</li>
+                            <li>Research and data analysis.</li>
+                            <li>Developing new services.</li>
+                        </ul>
+                        <p>
+                            We apply all the safeguards outlined in this policy when combining your personal information with
+                            your device information.
+                        </p>
+                        <p>
+                            In some instances, we may provide third parties with aggregated information and analytics in order
+                            to deliver and improve our service. This information will be anonymised so it cannot be used to
+                            identify you.
+                        </p>
+                    </section>
+
                 </comp:folding-container>
 
                 <comp:folding-container 
@@ -142,7 +165,7 @@
 
                     <table>
                         <tr>
-                            <td>Contractual obligations</td>
+                            <td scope="row">Contractual obligations</td>
                             <td>
                                 When we enter into a contract with you we need your personal data to be able to
                                 fulfil the contract e.g. if we agree to buy your CDs, we will need access to a thirdparty account to be able to pay you and may also need your address details to
@@ -150,21 +173,21 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Legal compliance</td>
+                            <td scope="row">Legal compliance</td>
                             <td>
                                 We may be required by law to retain some of your personal data e.g. fraud
                                 prevention.
                             </td>
                         </tr>
                         <tr>
-                            <td>Legitimate interests</td>
+                            <td scope="row">Legitimate interests</td>
                             <td>
                                 We may use your personal data for our legitimate interests e.g. keeping details of
                                 your trade in history so that we can provide you with a personalised service.
                             </td>
                         </tr>
                         <tr>
-                            <td>Consent</td>
+                            <td scope="row">Consent</td>
                             <td>
                                 Where you have given us your consent e.g. where you have ticked a box to say
                                 you would like to hear from us about special offers.
@@ -332,9 +355,6 @@
                 </p>
 
             </div>
-
-        </main>
-
-        <comp:footer />
+        </comp:page-container>    
     </h:body>
 </html>

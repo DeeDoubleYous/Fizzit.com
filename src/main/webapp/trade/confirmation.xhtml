@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp">
     
     
     <c:if test="#{param.id == null}">
@@ -11,14 +12,17 @@
         </script>
     </c:if>
     
-    <h:head>
-        <title>##{param.id} Trade Confirmation | Fizzit.com</title>
-        <h:outputStylesheet name="css/style.css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </h:head>
+    <comp:root-head title="##{param.id} Trade Confirmation" />
+    
     <body>
+        
+        <comp:page-container> 
+        
+        
         <div class="confirmation-container">
-            <h1>Thank you!<br/> You will receive an email shortly!</h1>
+            <header>
+                <h1>Thank you!<br/> You will receive an email shortly!</h1>
+            </header>
             
             <p>
                 Your trade has been accepted! We will email you to tell you what
@@ -38,12 +42,11 @@
         </div>
         
         
-        <footer>
-            <div class='dev-mock'>
-                <a href='/Fizzit.com/trade/email.jsf?trade=#{param.id}'>Email Confirmation</a>
-            </div>
-
-        </footer>
+        <div class='dev-mock'>
+            <a href='/Fizzit.com/trade/email.jsf?trade=#{param.id}'>Email Confirmation</a>
+        </div>
+            
+        </comp:page-container>
         
     </body>
 </html>

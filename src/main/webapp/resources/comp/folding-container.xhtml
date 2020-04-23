@@ -21,15 +21,16 @@
         <div class="folding-container">
             <input type="checkbox" class="fld-chk" name="fld" id="#{cc.attrs.checkboxId}"/>
             <label for="#{cc.attrs.checkboxId}">
-                <header>
-                    <i class="fas fa-caret-right"/>
-                    <h2>#{cc.attrs.title}</h2>
+                <header class="fld-header">
+                    <i aria-hidden="true" class="fas fa-caret-right"/>
+                    <h2 aria-hidden="false">#{cc.attrs.title}</h2>
                 </header>
             </label>
 
-            <div class="content">
+            
+            <article class="content">
                 <cc:insertChildren />
-            </div>
+            </article>
         </div>
     </cc:implementation>
 
