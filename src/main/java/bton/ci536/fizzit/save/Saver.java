@@ -5,14 +5,19 @@ import bton.ci536.fizzit.trade.LocalTradeList;
 import bton.ci536.fizzit.trade.TradeItem;
 import java.io.IOException;
 import javax.annotation.Resource;
-import javax.ejb.SessionContext;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
+
+/**
+ * Performs the actions that are involved with making changes to the Saved Product table in the database and making changes to the Trade List.
+ * @see 
+ * @author Alex Wishart | d.wishart1@uni.brighton.ac.uk
+ */
+
 
 @Named
 public class Saver {

@@ -7,6 +7,13 @@ import javax.inject.Named;
 import javax.persistence.*;
 
 
+/**
+ * The entity for interacting with the customer table
+ * @author Alex Wishart | d.wishart1@uni.brighton.ac.uk
+ *
+ */
+
+
 @NamedQueries(
         @NamedQuery(
                 name = "userLogin",

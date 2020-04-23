@@ -3,14 +3,19 @@ package bton.ci536.fizzit.save;
 import bton.ci536.fizzit.database.Customer;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.annotation.Resource;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
+
+/**
+ * Responsible for populating the data table on the saved page. Looks up the items based on the currently logged in user.
+ * @see SavedProduct
+ * @author Alex Wishart | d.wishart1@uni.brighton.ac.uk
+ */
+
 
 @Named
 public class SaveRepository {

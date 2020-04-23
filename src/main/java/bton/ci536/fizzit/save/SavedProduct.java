@@ -2,7 +2,6 @@ package bton.ci536.fizzit.save;
 
 import bton.ci536.fizzit.database.Customer;
 import bton.ci536.fizzit.trade.TradeItem;
-
 import java.io.Serializable;
 import javax.inject.Named;
 import javax.persistence.Column;
@@ -14,6 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+/**
+ * The entity for interacting with the Saved Product table. 
+ * @author Alex Wishart | d.wishart1@uni.brighton.ac.uk
+ */
 
 @NamedQueries({
 	 @NamedQuery(
