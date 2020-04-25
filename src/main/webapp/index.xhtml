@@ -6,17 +6,17 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp">
-    
+
     <comp:root-head title="Trading Media"/>
     <h:body>
         <comp:page-container>
-        
+
             <h:panelGroup class="trade-container" layout="block">
-                
+
                 <header>
                     <h1>Sell CDs, DVDs, &amp; Books</h1>
                 </header>
-                
+
                 <p>
                     To start enter the barcode without spaces or dashes for your CD or DVD then click add!
                 </p>
@@ -52,49 +52,29 @@
                     </h:commandButton>
                     <h:message id="trade-err" class="error" for="trade-btn"/>
                     <h:message id="errmsg" class="error" for="bcode"/>
-                    <!-- dataTable instead of ui:repeat for clear and easy table -->
-                    <h:dataTable id="trade-list" 
-                             value="#{localTradeList.items}" 
-                             var="item"
-                             styleClass="trade-table #{localTradeList.items.isEmpty()? 'hidden':''}">
-                        <h:column headerClass="verbose" class="verbose">
-                            <f:facet name="header">Barcode</f:facet>
-                            #{item.barcode}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Item</f:facet>
-                            #{item.itemName}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Qty</f:facet>
-                            #{item.itemQuantity}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Price</f:facet>
-                            #{item.formattedPrice}
-                        </h:column>
+                   
+                    <comp:trade-table trades="#{localTradeList.items}">
                         <h:column>
                             <h:commandLink
-                                    id="deleteItem"
-                                    action="#{localTradeList.deleteItem(item)}">
+                                id="deleteItem"
+                                 action="#{localTradeList.deleteItem(item)}">
                                 <f:ajax execute="@trade-list" resetValues="true" render="@form trade-list"/>
                                 <i class="far fa-trash-alt"></i>
                             </h:commandLink>
                         </h:column>
-						<h:column>
-							<h:commandLink
-						            id="saveItem"
-								    action="#{saver.saveItem(customer,item, localTradeList)}">
-								<f:ajax execute="@trade-list" resetValues="true" render="@form trade-list"/>
-								 <i class="far fa-save"></i>
-							</h:commandLink>
-						</h:column>
-                    </h:dataTable>
+                        <h:column>
+                            <h:commandLink
+                                id="saveItem"
+                                action="#{saver.saveItem(customer,item, localTradeList)}">
+                                <f:ajax execute="@trade-list" resetValues="true" render="@form trade-list"/>
+                                <i class="far fa-save"></i>
+                            </h:commandLink>
+                        </h:column>
+                    </comp:trade-table>
                 </h:form>
             </h:panelGroup> 
-            
+
         </comp:page-container>
-        
     </h:body>
 </html>
 

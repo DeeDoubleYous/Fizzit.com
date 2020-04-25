@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <cc:interface>
+        <cc:attribute name="trades" type="java.util.Collection" />
+    </cc:interface>
+
+    <cc:implementation>
+
+        <h:dataTable id="trade-list" 
+                     value="#{cc.attrs.trades}" 
+                     var="item"
+                     styleClass="trade-table #{cc.attrs.trades.isEmpty() ? 'hidden':''}">
+            <h:column headerClass="verbose" class="verbose">
+                <f:facet name="header">Barcode</f:facet>
+                    #{item.barcode}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Item</f:facet>
+                    #{item.itemName}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Qty</f:facet>
+                    #{item.itemQuantity}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Price</f:facet>
+                    #{item.formattedPrice}
+            </h:column>
+            
+            <cc:insertChildren />
+            
+        </h:dataTable>
+
+    </cc:implementation>
+
+
+</html>

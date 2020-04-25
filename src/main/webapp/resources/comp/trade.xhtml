@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:cc="http://xmlns.jcp.org/jsf/composite" 
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:comp="http://xmlns.jcp.org/jsf/composite/comp">
 
     <cc:interface>
         <cc:attribute name="trade" class="bton.ci536.fizzit.trade.Trade"/>
@@ -26,26 +27,9 @@
                     </h:commandLink>
                 </h:form>
             </header>
-            <h:dataTable value="#{cc.attrs.trade.tradeItems}"
-                         var="item"
-                         styleClass="trade-table">
-                <h:column class="verbose" headerClass="verbose">
-                    <f:facet name="header">Barcode</f:facet>
-                        #{item.barcode}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Item</f:facet>
-                        #{item.itemName}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Qty</f:facet>
-                        #{item.itemQuantity}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Amount</f:facet>
-                        #{item.formattedPrice}
-                </h:column>
-            </h:dataTable>
+            
+            <comp:trade-table trades="#{cc.attrs.trade.tradeItems}"/>
+            
 
         </h:panelGroup>
     </cc:implementation>
