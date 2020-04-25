@@ -64,10 +64,8 @@ public class LoginControl implements Serializable {
         		ex.printStackTrace(System.err);
         	}
         }catch(Exception e) {
-        	email = null;
-    		password = null;
             FacesContext.getCurrentInstance()
-                    .addMessage("form:login-butt", 
+                    .addMessage(null, 
                             new FacesMessage("Unfortunatly either the "
                                     + "password or email was incorrect, "
                                     + "please try again"));

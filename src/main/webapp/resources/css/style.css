@@ -164,9 +164,12 @@ body, html {
 .error{
     color:red;
     display: block;
+    list-style-type: none;
     margin: 0px;
     padding: 10px;
+    text-align: center;
     text-transform:none;
+   
 }
 
 .folding-container .content {
@@ -414,6 +417,7 @@ table td {
 .user-login-container {
     background: #202020;
     padding: 40px;
+    width: 400px;
 }
 
 .user-login{
@@ -484,6 +488,15 @@ table td {
     }
     table .verbose{
         display: none;
+    }
+    
+    .user-login-container{
+        width: 100vw;
+    }
+    
+    /*no scroll bar for mobile*/
+    ::-webkit-scrollbar {
+        width: 0;
     }
 }
 

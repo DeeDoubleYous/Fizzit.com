@@ -19,13 +19,14 @@
                 </header>
 
                 <h:panelGroup class="user-login" layout="block">
-                    <h:form id="form" class="user-login">
+                    <h:form id="form" class="user-login" prependId="false">
                         <div class="user-email-container">
                             <label for="email" class="input-label">Email</label>
                             <h:inputText id = "email"
                                          class="email-input"
                                          pt:title="Enter your email"
                                          required="true"
+                                         requiredMessage="Email required."
                                          value="#{loginControl.email}"/>
                         </div>
                         <div class="user-password-container">
@@ -33,15 +34,15 @@
                             <h:inputSecret id = "password"
                                          class="password-input"
                                          required="true"
+                                         requiredMessage="Password required."
                                          value="#{loginControl.password}"/>
                         </div>
                         <h:commandButton id="login-butt"
                                          class="login-btn btn active"
                                          value ="login"
                                          action="#{loginControl.submit(customer)}">
-                            <f:ajax execute="@form" resetValues="true" render="@form"/>
                         </h:commandButton>
-                        <h:message id="login-error" class="error" for="user-login"/>
+                        <h:messages globalOnly="false" class="error" />
                     </h:form>
                 </h:panelGroup>
             </div>
