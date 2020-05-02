@@ -50,8 +50,7 @@
                                      action="#{trader.trade(customer, localTradeList)}">
                         <f:ajax resetValues="true" render="@form"/> 
                     </h:commandButton>
-                    <h:message id="trade-err" class="error" for="trade-btn"/>
-                    <h:message id="errmsg" class="error" for="bcode"/>
+                    <h:messages class="error" globalOnly="false"/>
                    
                     <comp:trade-table trades="#{localTradeList.items}">
                         <h:column>
