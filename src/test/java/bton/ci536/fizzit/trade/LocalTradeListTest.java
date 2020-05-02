@@ -2,7 +2,6 @@ package bton.ci536.fizzit.trade;
 
 import bton.ci536.fizzit.database.Product;
 import bton.ci536.mock.MockEntityManager;
-import bton.ci536.mock.MockFacesContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,7 +14,6 @@ public class LocalTradeListTest {
     
     private LocalTradeList instance;
     private MockEntityManager entityManager;
-    private MockFacesContext facesContext;
     
     public LocalTradeListTest() {
     }
@@ -23,10 +21,8 @@ public class LocalTradeListTest {
     @BeforeEach
     public void setUp() {
         this.entityManager = new MockEntityManager();
-        this.facesContext = new MockFacesContext();
         this.instance = new LocalTradeList();
         instance.em = entityManager;
-        instance.context = facesContext;
     }
     
     @Test
@@ -66,21 +62,6 @@ public class LocalTradeListTest {
         assertEquals(2, instance.getTotalItems());
         //Total value of two item should be same as list ~ within 0.001 delta
         assertEquals(price * 2, instance.getTotalValue(), 0.001);
-        
-    }
-    
-    @Test 
-    public void testSubmit_NoItemFound() {
-        System.out.println("submit_NoItemFound");
-        
-        //set barcode without setting mock EntityManager return - so it will return null
-        instance.setBarcode("not a real barcode");
-        instance.submit();
-        
-        //expecting facescontext to be used because the return from the barcode will be null.
-        assertTrue(facesContext.wasAddMessageCalled);
-        //Should be no items in the trade list
-        assertTrue(instance.getItems().isEmpty());
         
     }
 
