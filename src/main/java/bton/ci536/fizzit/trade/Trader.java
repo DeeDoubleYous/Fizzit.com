@@ -24,16 +24,20 @@ public class Trader {
     @Resource
     UserTransaction ut;
     
+    private void redirect(String path) {
+        try{
+            FacesContext.getCurrentInstance()
+                    .getExternalContext()
+                    .redirect(path);
+        } catch(IOException ex) {
+            ex.printStackTrace(System.err);
+        }
+    }
+    
     public void trade(Customer customer, LocalTradeList localTradeList) {
         
         if(customer.getCustomerId() == null) {
-            try {
-                FacesContext.getCurrentInstance().getExternalContext()
-                        .redirect("userlogin.xhtml");
-            } catch(IOException ex)
-            {
-                ex.printStackTrace(System.err);
-            }
+            redirect("userlogin.xhtml");
         } else {
             Collection<TradeItem> tradeItems = localTradeList.getItems();
             Trade trade = new Trade();
@@ -53,12 +57,7 @@ public class Trader {
             //clear the current trade information 
             localTradeList.clear();
             
-            try { //redirect to confirmation page
-                FacesContext.getCurrentInstance().getExternalContext()
-                        .redirect("./trade/confirmation.xhtml?id=" + trade.getTradeId());
-            } catch(IOException ex) {
-                ex.printStackTrace(System.err);
-            }
+            redirect("./trade/confirmation.xhtml?id=" + trade.getTradeId());
             
         }
         
