@@ -1,5 +1,140 @@
 # Fizzit.com - An Integrated group project 
 
+
+**Table Of Contents**
+
+- [Getting Started] (#getting-started)
+    - [Requirements] (#requirements)
+    - [Quick start] (#quick-start)
+    - [Manual install] (#manual-install)
+- [Project Brief] (#project-brief)
+    - [Introduction] (#introduction)
+    - [Making a small profit] (#making-a-small-profit)
+    - [Detailed customer process on Fizzit] (#detailed-customer-process-on-Fizzit)
+    - [Key functional requirements for conducting a trade] (#key-functional-requirements-for-conducting-a-trade)
+    - [Project goal] (#project-goal)
+    
+
+## Getting Started
+
+### Requirements 
+1. JDK8 - Not a minimum JDK, Glassfish must be run with JDK8 only.
+2. Maven 
+
+### Quick start 
+In the project directory a shell script has been made to make it easy to download the required software and
+configure the server then deploy Fizzit onto that server. 
+
+To get started do the following: 
+
+``` console 
+foo@bar:~$ git clone https://github.com/DA-Wishart/Fizzit.com.git
+foo@bar:~$ cd Fizzit.com
+```
+
+In this directory the shell script is called fizzit.sh, depending on your settings
+you may need to change permissions in order to allow the execution of this script. 
+
+You will also need to add your database details to the top of the script and save it. 
+The top of the script will have the following lines that need to be changed: 
+
+$DBNAME=DATABASE_NAME
+$DBUSER=DATABASE_USER
+$DBPASS=DATABASE_PASSWORD
+$DBURL=DATABASE_URL
+$DBPORT=DATABASE_PORT
+
+Change the left hand values with your database information and then the script will be ready to run. 
+
+*Tutors moderating this project can find the database information in the group report appendix.*
+
+
+``` console
+foo@bar:~/Fizzit.com$ ./fizzit.sh 
+```
+
+Running this script will go through all the steps of the manual installation. 
+Simply the Glassfish server will be downloaded and configured and the Fizzit.com 
+project will be compiled with the WAR file moved to the Glassfish server ready for
+when the server is started.
+
+### Manual install
+
+1. Install Glassfish server version 5.1 
+2. Download the mysql-connector-java-8.0.15.jar *
+    1. Place the jar in the server library - glassfish5/glassfish/domains/domain1/lib/
+3. Create a new connection pool on Glassfish server 
+This step requires starting the Glassfish server which can be done using the following command:
+
+    ``` console 
+    foo@bar:PATH_TO_GLASSFISH/glassfish5/bin$ ./asadmin start-domain
+    ```
+
+    To stop the Glassfish server then use the following:
+
+    ``` console 
+    foo@bar:PATH_TO_GLASSFISH/glassfish5/bin$ ./asadmin stop-domain
+    ```
+
+    There are two ways to create a new connection pool - through the GUI or through CLI. 
+
+    In this section we only cover the CLI as with the commands to follow it will be easier 
+    and quicker then the GUI. The following command creates the a new connection pool:
+
+    ``` console 
+    foo@bar:PATH_TO_GLASSFISH/glassfish5/bin$ ./asadmin create-jdbc-connection-pool --ping 
+    --restype javax.sql.DataSource --datasourceclassname com.mysql.cj.jdbc.MySqlDataSource 
+    --property user=$DBUSER:password=$DBPASS:DatabaseName=$DBNAME:ServerName=$DBURL:port=$DBPORT:useSSL=false fizzit_pool 
+    ```
+
+    Replace each occurrence of $XXX with your specific database information - Fizzit.com 
+    is configure to work with a MySql database so using any other vendor would require changes 
+    within the project to support (persistence.xml for those brave enough). 
+
+    **NB: Glassfish server needs to be running in order to create a new connection pool**
+
+4. Configure Glassfish to use the new connection pool by default 
+
+    This can be achieved through the GUI or CLI as before with the connection pool. 
+
+    The following command can be used and doesn't require any changes: 
+
+    ``` console 
+    foo@bar:PATH_TO_GLASSFISH/glassfish5/bin$ ./asadmin set resources.jdbc-resource.jdbc/__default.pool-name=fizzit_pool
+    ```
+    
+    **NB: Glassfish server needs to be running in order to configure JDBC resources**
+
+    Glassfish is now ready to deploy the Fizzit WAR file.
+
+5. Clone the project repository 
+
+    ``` console 
+    foo@bar:~$ git clone https://github.com/DA-Wishart/Fizzit.com.git
+    ```
+
+6. Compiling the project to a WAR file
+
+    Compiling the project is taken care of by Maven so this step is a single command
+
+    ``` console 
+    foo@bar:PROJECT_DIRECTORY$ mvn clean package 
+    ```
+
+7. Move the compiled WAR file into Glassfish
+
+    ``` console
+    foo@bar:PROJECT_DIRECTORY$ cp ./target/Fizzit.com.war PATH_TO_GLASSFISH/glassfish5/glassfish/domains/domain1/autodeploy
+    ```
+
+    If the server is running then Fizzit.com should become deployed and viewable at 
+    http://localhost:8080/Fizzit.com
+    If the server is not running then Fizzit will be deployed once you start up the server. 
+
+
+## Project Brief
+
+### Introduction
 Selling your stuff has never been easier. Fizzit.com is an online company that sets its vision as
 “To Be the UK's Easiest Online trader of Books, CDs and DVDs”. It has a number of sub-goals
 to help achieve this vision. Fizzit’s aim is to create a strong value proposition for its customers
@@ -14,7 +149,7 @@ the product. This Fizzit calls the ‘one input price return’ goal. Once the C
 products entered or a total trade value of over £10, then a trade can proceed. The products
 are simply delivered to Fizzit who then pay the customer.
 
-## Making a small profit
+### Making a small profit
 The management of Fizzit plan to take any products traded and on-sell them via a different
 company (a partner company but an entirely independent legal entity). The World Of Online
 (TWOO) is an online catalogue akin to Amazon.co.uk but only dealing in second-hand i.e. used
@@ -26,7 +161,7 @@ TWOO and it does this by stocking its warehouse on a weekly basis with products 
 from couriers and drop off locations. The hope is TWOO will provide a return value to Fizzit
 through rapid feedback on what sells and what mark-up Fizzit may be able to make.
 
-## Detailed Customer Process on Fizzit
+### Detailed Customer Process on Fizzit
 Fizzit works like this: a customer logs in or registers to create an account if a new customer.
 Immediately the customer is presented with an input box prompting the customer to enter a
 barcode/ISBN of a product to sell. When a price is returned, the customer moves the item to
@@ -48,7 +183,7 @@ If the product is large the goods are returned via courier. The customer is not 
 return but is given notice that if goods are found to be not good enough twice more in a
 calendar year then they will be barred from selling via the site for a calendar year.
 
-## Key functional requirements for conducting a trade:
+### Key functional requirements for conducting a trade:
 1. The customer must be able to enter a barcode number or scan it in
 2. The customer can enter up to 100 product barcodes per trade
 3. The minimum number of products per trade is 10
@@ -84,7 +219,7 @@ chosen from a list of nearest stores to the customer’s postcode.
 details of the trade and a cover page document for printing and placing on the
 package that is taken to the drop-off location. It includes instructions for usage.
 
-## Project Goal
+### Project Goal
 Despite clear cut function requirements, there is no consideration of security or privacy. As
 such, Fizzit would be in breach of GDPR and common sense security measures. It is your task
 to document a set of security and privacy requirements that meet these functional requirements.
