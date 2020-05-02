@@ -13,9 +13,15 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+
 /**
- * A Local list of to-be-traded items ({@link Products}) by the customer. 
+ * A Local list of to-be-traded items ({@link TradeItem}) by the customer. 
+ * When this trade list is submitted then all the TradeItems are associated to 
+ * a single {@link Trade}
+ * 
+ * @see Trade
  * @see TradeItem
+ * 
  * @author Max Cripps <43726912+mc1098@users.noreply.github.com>
  */
 @Named
@@ -71,8 +77,6 @@ public class LocalTradeList implements Serializable{
         this.totalItems = totalItems;
     }
     
-    
-    
     /**
      * Submit will check the current barcode field in this instance 
      * is within the TWOO database. 
@@ -115,18 +119,22 @@ public class LocalTradeList implements Serializable{
     
     
     /**
-     * Will take a product item and removes it from the items arrayList. The only time this can be called
+     * Take a {@link TradeItem} and removes it from the items list. The only time this can be called
      * is from an item that is already in the list. Will also subtract the cost of the item from the totalValue
-     * @param tradeItem
+     * @param tradeItem item to be removed from trade list.
+     * 
+     * @see TradeItem
      */
-    
     public void deleteItem(TradeItem tradeItem) {
         totalValue -= tradeItem.getItemAmount() * tradeItem.getItemQuantity();
         totalItems -= tradeItem.getItemQuantity();
         items.remove(tradeItem.getBarcode());
     }
     
-    
+    /**
+     * This will clear the information stored in this LocalTradeList so that 
+     * it can used again for the same user.
+     */
     public void clear(){
         barcode = "";
         totalItems = 0;
@@ -134,13 +142,18 @@ public class LocalTradeList implements Serializable{
         items.clear();
     }
     
+    /**
+     * Adds a {@link TradeItem} to the list - increasing the total trade number and amount.
+     * @param tradeItem Item to add to this LocalTradeList.
+     * 
+     * @see TradeItem
+     */
     public void addItem(TradeItem tradeItem) {
     	totalValue += tradeItem.getItemAmount() * tradeItem.getItemQuantity();
     	totalItems += tradeItem.getItemQuantity();
     	if(items.containsKey(tradeItem.getBarcode())) {
     		TradeItem inItems = items.get(tradeItem.getBarcode());
     		inItems.setItemQuantity(inItems.getItemQuantity() + tradeItem.getItemQuantity());
-    		//items.put(tradeItem.getBarcode(), inItems);
     	}else {
     		items.put(tradeItem.getBarcode(), tradeItem);
     	}
