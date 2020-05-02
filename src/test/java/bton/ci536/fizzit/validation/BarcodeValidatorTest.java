@@ -45,8 +45,8 @@ public class BarcodeValidatorTest {
 
     @ParameterizedTest
     @MethodSource("validateProvider")
-    public void testValidate(String barcode, boolean validity) {
-        System.out.println("validate");
+    public void testValidate(String testName, String barcode, boolean validity) {
+        System.out.println(testName);
         
         try {
             validator.validate(null, null, barcode);
@@ -59,18 +59,19 @@ public class BarcodeValidatorTest {
     
     static Stream<Arguments> validateProvider() {
         return Stream.of(
-                arguments("", false),
-                arguments("a", false), 
-                arguments("123456789", true),       //ISBN 9
-                arguments("abcdefghi", false),      
-                arguments("1a3b5c7d9", false),
-                arguments("1234567891", true),      //ISBN 10
-                arguments("abcdefghij", false),
-                arguments("a2b4c6d8e1", false),
-                arguments("1234567891123", true),    //EAN-13
-                arguments("abcdefghijklm", false),
-                arguments("1a3b5c7d9e2f3", false),
-                arguments("12345678911234", false)
+            //        name of test,                 String to test,   expResult 
+            arguments("not_valid_empty",            "",               false),
+            arguments("not_valid_too_short",        "a",              false), 
+            arguments("validate_isbn9",             "123456789",      true),    //ISBN 9
+            arguments("not_valid_9_alphanumeric",   "abcdefghi",      false),      
+            arguments("not_valid_10_alphanumeric",  "1a3b5c7d9",      false),
+            arguments("validate_isbn10",            "1234567891",     true),    //ISBN 10
+            arguments("not_valid_11_char",          "abcdefghij",     false),
+            arguments("not_valid_12_char",          "a2b4c6d8e1",     false),
+            arguments("validate_ean13",             "1234567891123",  true),    //EAN-13
+            arguments("not_valid_13_alpha",         "abcdefghijklm",  false),
+            arguments("not_valid_13_alphanumeric",  "1a3b5c7d9e2f3",  false),
+            arguments("not_valid_too_long",         "12345678901234", false)
         );
     }
     
