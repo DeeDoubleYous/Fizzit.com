@@ -10,7 +10,7 @@
 - [Project Brief] (#project-brief)
     - [Introduction] (#introduction)
     - [Making a small profit] (#making-a-small-profit)
-    - [Detailed customer process on Fizzit] (#detailed-customer-process-on-Fizzit)
+    - [Detailed customer process on Fizzit] (#detailed-customer-process-on-fizzit)
     - [Key functional requirements for conducting a trade] (#key-functional-requirements-for-conducting-a-trade)
     - [Project goal] (#project-goal)
     
@@ -183,7 +183,7 @@ If the product is large the goods are returned via courier. The customer is not 
 return but is given notice that if goods are found to be not good enough twice more in a
 calendar year then they will be barred from selling via the site for a calendar year.
 
-### Key functional requirements for conducting a trade:
+### Key functional requirements for conducting a trade
 1. The customer must be able to enter a barcode number or scan it in
 2. The customer can enter up to 100 product barcodes per trade
 3. The minimum number of products per trade is 10
