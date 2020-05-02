@@ -2,6 +2,7 @@ package bton.ci536.fizzit.trade;
 
 import bton.ci536.fizzit.database.Customer;
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 import javax.inject.Named;
@@ -109,7 +110,11 @@ public class Trade implements Serializable, Comparable<Trade>{
     }
     
     public void cancelTrade() {
-        tradeStatuses.add(new TradeStatus(this, TradeStatus.CANCELLED));
+        //check if the trade has already been cancelled.
+        if(!tradeStatuses.stream()
+                .anyMatch(ts -> ts.getStatus() == TradeStatus.CANCELLED)) {
+            tradeStatuses.add(new TradeStatus(this, TradeStatus.CANCELLED));
+        }
     }
     
     public double getTotalValue() {
