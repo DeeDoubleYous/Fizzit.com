@@ -38,11 +38,11 @@ you may need to change permissions in order to allow the execution of this scrip
 You will also need to add your database details to the top of the script and save it. 
 The top of the script will have the following lines that need to be changed: 
 
-$DBNAME=DATABASE_NAME
-$DBUSER=DATABASE_USER
-$DBPASS=DATABASE_PASSWORD
-$DBURL=DATABASE_URL
-$DBPORT=DATABASE_PORT
+DBNAME=DATABASE_NAME
+DBUSER=DATABASE_USER
+DBPASS=DATABASE_PASSWORD
+DBURL=DATABASE_URL
+DBPORT=DATABASE_PORT
 
 Change the left hand values with your database information and then the script will be ready to run. 
 
