@@ -3,16 +3,16 @@
 
 **Table Of Contents**
 
-- [Getting Started] (#getting-started)
-    - [Requirements] (#requirements)
-    - [Quick start] (#quick-start)
-    - [Manual install] (#manual-install)
-- [Project Brief] (#project-brief)
-    - [Introduction] (#introduction)
-    - [Making a small profit] (#making-a-small-profit)
-    - [Detailed customer process on Fizzit] (#detailed-customer-process-on-fizzit)
-    - [Key functional requirements for conducting a trade] (#key-functional-requirements-for-conducting-a-trade)
-    - [Project goal] (#project-goal)
+- [Getting Started](#getting-started)
+    - [Requirements](#requirements)
+    - [Quick start](#quick-start)
+    - [Manual install](#manual-install)
+- [Project Brief](#project-brief)
+    - [Introduction](#introduction)
+    - [Making a small profit](#making-a-small-profit)
+    - [Detailed customer process on Fizzit](#detailed-customer-process-on-fizzit)
+    - [Key functional requirements for conducting a trade](#key-functional-requirements-for-conducting-a-trade)
+    - [Project goal](#project-goal)
     
 
 ## Getting Started
