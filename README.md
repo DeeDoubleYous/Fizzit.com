@@ -61,7 +61,7 @@ when the server is started.
 ### Manual install
 
 1. Install Glassfish server version 5.1 
-2. Download the mysql-connector-java-8.0.15.jar *
+2. Download the mysql-connector-java-8.0.15.jar ^
     1. Place the jar in the server library - glassfish5/glassfish/domains/domain1/lib/
 3. Create a new connection pool on Glassfish server 
 This step requires starting the Glassfish server which can be done using the following command:
@@ -83,8 +83,9 @@ This step requires starting the Glassfish server which can be done using the fol
 
     ``` console 
     foo@bar:PATH_TO_GLASSFISH/glassfish5/bin$ ./asadmin create-jdbc-connection-pool --ping 
-    --restype javax.sql.DataSource --datasourceclassname com.mysql.cj.jdbc.MySqlDataSource 
-    --property user=$DBUSER:password=$DBPASS:DatabaseName=$DBNAME:ServerName=$DBURL:port=$DBPORT:useSSL=false fizzit_pool 
+    --restype javax.sql.DataSource --datasourceclassname com.mysql.cj.jdbc.MySqlDataSource --property 
+    user=$DBUSER:password=$DBPASS:DatabaseName=$DBNAME:ServerName=$DBURL:port=$DBPORT:useSSL=false 
+    fizzit_pool 
     ```
 
     Replace each occurrence of $XXX with your specific database information - Fizzit.com 
@@ -100,7 +101,8 @@ This step requires starting the Glassfish server which can be done using the fol
     The following command can be used and doesn't require any changes: 
 
     ``` console 
-    foo@bar:PATH_TO_GLASSFISH/glassfish5/bin$ ./asadmin set resources.jdbc-resource.jdbc/__default.pool-name=fizzit_pool
+    foo@bar:PATH_TO_GLASSFISH/glassfish5/bin$ ./asadmin set 
+    resources.jdbc-resource.jdbc/__default.pool-name=fizzit_pool
     ```
     
     **NB: Glassfish server needs to be running in order to configure JDBC resources**
@@ -124,13 +126,17 @@ This step requires starting the Glassfish server which can be done using the fol
 7. Move the compiled WAR file into Glassfish
 
     ``` console
-    foo@bar:PROJECT_DIRECTORY$ cp ./target/Fizzit.com.war PATH_TO_GLASSFISH/glassfish5/glassfish/domains/domain1/autodeploy
+    foo@bar:PROJECT_DIRECTORY$ cp ./target/Fizzit.com.war 
+    PATH_TO_GLASSFISH/glassfish5/glassfish/domains/domain1/autodeploy
     ```
 
     If the server is running then Fizzit.com should become deployed and viewable at 
     http://localhost:8080/Fizzit.com
     If the server is not running then Fizzit will be deployed once you start up the server. 
 
+
+^ *The project is based on the assertion of using MySql so in order to use a different vendor 
+more configuration changes would be required.*
 
 ## Project Brief
 
