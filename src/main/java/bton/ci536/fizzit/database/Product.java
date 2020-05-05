@@ -29,6 +29,16 @@ public class Product implements Serializable {
     @Column(name = "productName")
     private String name;
 
+    public Product() {
+    }
+    
+    public Product(String barcode, int type, double price, String name) {
+        this.barcode = barcode;
+        this.type = type;
+        this.price = price;
+        this.name = name;
+    }
+
     public String getBarcode() {
         return barcode;
     }

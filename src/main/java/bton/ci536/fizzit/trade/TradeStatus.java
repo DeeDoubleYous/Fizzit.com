@@ -2,6 +2,7 @@ package bton.ci536.fizzit.trade;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -101,7 +102,47 @@ public class TradeStatus implements Serializable, Comparable<TradeStatus>{
     
     @Override
     public int compareTo(TradeStatus o) {
-        return statusDateTime.compareTo(o.statusDateTime);
+        int dt = this.statusDateTime.compareTo(o.statusDateTime);
+        if(dt == 0) { //If somehow these are the same then sort by the status
+            return Integer.compare(this.status, o.status);
+        } else {
+            return dt;
+        }
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 29 * hash + this.status;
+        hash = 29 * hash + Objects.hashCode(this.statusDateTime);
+        hash = 29 * hash + Objects.hashCode(this.trade);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TradeStatus other = (TradeStatus) obj;
+        if (this.status != other.status) {
+            return false;
+        }
+        if (!Objects.equals(this.statusDateTime, other.statusDateTime)) {
+            return false;
+        }
+        if (!Objects.equals(this.trade, other.trade)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     
 }
