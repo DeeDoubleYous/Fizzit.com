@@ -1,11 +1,11 @@
 #!/bin/sh
 
 # Database information to be set.
-$DBNAME=DATABASE_NAME
-$DBUSER=DATABASE_USER
-$DBPASS=DATABASE_PASSWORD
-$DBURL=DATABASE_URL
-$DBPORT=DATABASE_PORT
+DBNAME=DATABASE_NAME
+DBUSER=DATABASE_USER
+DBPASS=DATABASE_PASSWORD
+DBURL=DATABASE_URL
+DBPORT=DATABASE_PORT
 
 echo Moving to parent directory 
 cd ..
@@ -36,7 +36,7 @@ echo Start Glassfish server in order to configure connection pool
 ./glassfish5/bin/asadmin start-domain 
 
 echo Configure a connection pool on Glassfish for Fizzit
-./glassfish5/bin/asadmin create-jdbc-connection-pool --ping --restype javax.sql.DataSource --datasourceclassname com.mysql.cj.jdbc.MySqlDataSource --property user=$DBUSER:password=$DBPASS:DatabaseName=$DBNAME:ServerName=$DBURL:port=$DBPORT:useSSL=false fizzit_pool
+./glassfish5/bin/asadmin create-jdbc-connection-pool --ping --restype javax.sql.DataSource --datasourceclassname com.mysql.cj.jdbc.MysqlDataSource --property user=$DBUSER:password=$DBPASS:DatabaseName=$DBNAME:ServerName=$DBURL:port=$DBPORT:useSSL=false fizzit_pool
 
 echo Configure JDBC resource jdbc/__default to use the new connection pool
 ./glassfish5/bin/asadmin set resources.jdbc-resource.jdbc/__default.pool-name=fizzit_pool
